@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#081018" />
+      <stop offset="100%" stop-color="#0c1d2e" />
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06B6D4" />
+      <stop offset="100%" stop-color="#3B82F6" />
+    </linearGradient>
+    <filter id="glow2" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  <rect width="800" height="500" rx="16" fill="url(#bg2)" />
+  
+  <!-- Topology Mesh Rings -->
+  <circle cx="400" cy="250" r="180" fill="none" stroke="rgba(6,182,212,0.12)" stroke-width="1.5" stroke-dasharray="8,8" />
+  <circle cx="400" cy="250" r="120" fill="none" stroke="rgba(6,182,212,0.2)" stroke-width="1.5" />
+  <circle cx="400" cy="250" r="60" fill="none" stroke="rgba(59,130,246,0.3)" stroke-width="2" />
+
+  <!-- Center Hub -->
+  <circle cx="400" cy="250" r="32" fill="url(#cyanGrad)" filter="url(#glow2)" opacity="0.9" />
+  <polygon points="392,240 412,250 392,260" fill="#FFFFFF" />
+
+  <!-- Outer Microservice Nodes -->
+  <g stroke="#06B6D4" stroke-width="1.5" opacity="0.7">
+    <line x1="400" y1="250" x2="240" y2="150" />
+    <line x1="400" y1="250" x2="560" y2="150" />
+    <line x1="400" y1="250" x2="220" y2="330" />
+    <line x1="400" y1="250" x2="580" y2="320" />
+    <line x1="400" y1="250" x2="400" y2="90" />
+  </g>
+
+  <!-- Node Satellites -->
+  <circle cx="240" cy="150" r="18" fill="#111c2a" stroke="#06B6D4" stroke-width="2" />
+  <circle cx="560" cy="150" r="22" fill="#111c2a" stroke="#3B82F6" stroke-width="2" />
+  <circle cx="220" cy="330" r="16" fill="#111c2a" stroke="#10B981" stroke-width="2" />
+  <circle cx="580" cy="320" r="20" fill="#111c2a" stroke="#F59E0B" stroke-width="2" />
+  <circle cx="400" cy="90" r="14" fill="#111c2a" stroke="#EC4899" stroke-width="2" />
+
+  <!-- Floating Telemetry Chart Card -->
+  <g transform="translate(60, 60)">
+    <rect width="180" height="90" rx="12" fill="rgba(15,23,42,0.85)" stroke="rgba(255,255,255,0.1)" />
+    <rect x="16" y="16" width="60" height="6" rx="3" fill="#64748B" />
+    <text x="16" y="44" fill="#F8FAFC" font-family="system-ui, sans-serif" font-size="18" font-weight="700">2.5M req/s</text>
+    <polyline points="16,70 40,62 70,66 100,52 130,58 160,45" fill="none" stroke="#06B6D4" stroke-width="2" />
+  </g>
+
+  <g transform="translate(40, 420)">
+    <rect width="180" height="36" rx="18" fill="rgba(0,0,0,0.6)" stroke="rgba(255,255,255,0.15)" />
+    <circle cx="20" cy="18" r="4" fill="#06B6D4" />
+    <text x="35" y="23" fill="#F8FAFC" font-family="system-ui, sans-serif" font-size="12" font-weight="600">NovaFlow Engine</text>
+  </g>
+</svg>

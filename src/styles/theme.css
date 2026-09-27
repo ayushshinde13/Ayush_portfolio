@@ -1,0 +1,336 @@
+:root {
+  --bg-primary: #08090d;
+  --bg-secondary: #0d0f17;
+  --bg-card: rgba(17, 20, 30, 0.75);
+  --bg-card-hover: rgba(23, 27, 40, 0.85);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-glow: rgba(99, 102, 241, 0.45);
+  
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+
+  --accent-indigo: #818cf8;
+  --accent-cyan: #22d3ee;
+  --accent-pink: #f472b6;
+  --accent-emerald: #34d399;
+  --accent-glow: 129, 140, 248;
+
+  --glass-bg: rgba(13, 15, 23, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --nav-bg: rgba(10, 12, 18, 0.8);
+
+  --grid-line: rgba(255, 255, 255, 0.04);
+  --noise-opacity: 0.035;
+  --cursor-ring: rgba(129, 140, 248, 0.5);
+  --cursor-dot: #a5b4fc;
+}
+
+[data-theme='dark'],
+.dark {
+  --bg-primary: #08090d;
+  --bg-secondary: #0d0f17;
+  --bg-card: rgba(17, 20, 30, 0.75);
+  --bg-card-hover: rgba(23, 27, 40, 0.85);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-glow: rgba(99, 102, 241, 0.45);
+
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+
+  --accent-indigo: #818cf8;
+  --accent-cyan: #22d3ee;
+  --accent-pink: #f472b6;
+  --accent-emerald: #34d399;
+  --accent-glow: 129, 140, 248;
+
+  --glass-bg: rgba(13, 15, 23, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --nav-bg: rgba(10, 12, 18, 0.8);
+
+  --grid-line: rgba(255, 255, 255, 0.04);
+  --noise-opacity: 0.035;
+  --cursor-ring: rgba(129, 140, 248, 0.5);
+  --cursor-dot: #a5b4fc;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.3);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-indigo);
+}
+
+/* Background Grid Utility */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+}
+
+.bg-radial-gradient {
+  background: radial-gradient(circle at 50% 0%, rgba(var(--accent-glow), 0.18) 0%, transparent 65%);
+}
+
+[data-theme='dark'] .bg-radial-gradient,
+.dark .bg-radial-gradient {
+  background: radial-gradient(circle at 50% 0%, rgba(var(--accent-glow), 0.18) 0%, transparent 65%);
+}
+
+.glow-ambient-indigo {
+  position: absolute;
+  filter: blur(120px);
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(6, 182, 212, 0.08) 60%, transparent 80%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Glassmorphism helpers */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  box-shadow: none;
+}
+
+[data-theme='dark'] .glass-panel,
+.dark .glass-panel {
+  box-shadow: none;
+}
+
+.glass-nav {
+  background: var(--nav-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+}
+
+/* Gradient Text */
+.text-gradient {
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-indigo) 60%, var(--accent-cyan) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-purple {
+  background: linear-gradient(135deg, #a855f7 0%, #6366f1 50%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme='dark'] .text-gradient-purple,
+.dark .text-gradient-purple {
+  background: linear-gradient(135deg, #a855f7 0%, #6366f1 50%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Animated Shimmer & Pulse Utilities */
+@keyframes auroraShimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes gentleBreathe {
+  0%, 100% {
+    opacity: 0.85;
+    transform: translateY(0px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes neonAura {
+  0%, 100% {
+    filter: drop-shadow(0 0 15px rgba(99, 102, 241, 0.4)) drop-shadow(0 0 30px rgba(6, 182, 212, 0.2));
+  }
+  50% {
+    filter: drop-shadow(0 0 25px rgba(129, 140, 248, 0.7)) drop-shadow(0 0 45px rgba(34, 211, 238, 0.45));
+  }
+}
+
+.aurora-text-gradient {
+  background: linear-gradient(90deg, #818cf8, #c084fc, #38bdf8, #818cf8);
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: auroraShimmer 6s linear infinite;
+}
+
+.neon-aura-pulse {
+  animation: neonAura 4s ease-in-out infinite;
+}
+
+.gentle-breathe {
+  animation: gentleBreathe 5s ease-in-out infinite;
+}
+
+/* Background.png cinematic zoom out & zoom in animation without cropping */
+@keyframes heroBgZoomInOut {
+  0% {
+    transform: scale(1.03);
+  }
+  50% {
+    transform: scale(1.09);
+  }
+  100% {
+    transform: scale(1.03);
+  }
+}
+
+@keyframes heroLightSweep {
+  0%, 100% {
+    opacity: 0.12;
+    transform: translate(-20%, -15%) scale(1);
+  }
+  50% {
+    opacity: 0.32;
+    transform: translate(15%, 15%) scale(1.18);
+  }
+}
+
+.hero-bg-animate {
+  animation: heroBgZoomInOut 9s ease-in-out infinite;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.hero-light-sweep {
+  animation: heroLightSweep 6.5s ease-in-out infinite alternate;
+  will-change: transform, opacity;
+}
+
+/* Subtitle Highlight Shimmer Animations */
+@keyframes highlightShimmerFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.text-shimmer-gold {
+  background: linear-gradient(90deg, #fef08a, #facc15, #f97316, #fef08a);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: highlightShimmerFlow 4.5s ease-in-out infinite;
+}
+
+.text-shimmer-rose {
+  background: linear-gradient(90deg, #fda4af, #f43f5e, #fb7185, #fda4af);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: highlightShimmerFlow 5s ease-in-out infinite;
+}
+
+.text-shimmer-lime {
+  background: linear-gradient(90deg, #d9f99d, #a3e635, #4ade80, #d9f99d);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: highlightShimmerFlow 5.5s ease-in-out infinite;
+}
+
+.text-shimmer-ice {
+  background: linear-gradient(90deg, #ffffff, #a5f3fc, #ffffff, #e0e7ff);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: highlightShimmerFlow 6s ease-in-out infinite;
+}
+
+/* Orbit Animations for Protector / Tech Radar visual */
+@keyframes spinClockwise {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinCounterClockwise {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes counterRotateClockwise {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes counterRotateCounterClockwise {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-orbit-outer {
+  animation: spinClockwise 45s linear infinite;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.animate-orbit-inner {
+  animation: spinCounterClockwise 32s linear infinite;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.animate-orbit-outer-icon {
+  animation: counterRotateClockwise 45s linear infinite;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.animate-orbit-inner-icon {
+  animation: counterRotateCounterClockwise 32s linear infinite;
+  transform-origin: center center;
+  will-change: transform;
+}
+

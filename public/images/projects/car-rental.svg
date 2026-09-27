@@ -1,0 +1,296 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgCR" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050a0f" />
+      <stop offset="50%" stop-color="#081420" />
+      <stop offset="100%" stop-color="#0c1d2e" />
+    </linearGradient>
+
+    <!-- Neon Glow Blue / Cyan -->
+    <linearGradient id="cyanNeon" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="50%" stop-color="#00d2ff" />
+      <stop offset="100%" stop-color="#38bdf8" />
+    </linearGradient>
+
+    <!-- Car Body Metallic Gradient -->
+    <linearGradient id="carBodyGrad" x1="0%" y1="0%" x2="100%" y2="40%">
+      <stop offset="0%" stop-color="#0d1f30" />
+      <stop offset="35%" stop-color="#14314c" />
+      <stop offset="70%" stop-color="#0e2337" />
+      <stop offset="100%" stop-color="#081420" />
+    </linearGradient>
+
+    <!-- Window Glass Gradient -->
+    <linearGradient id="glassGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a5f" stop-opacity="0.9" />
+      <stop offset="70%" stop-color="#0a1526" stop-opacity="0.95" />
+      <stop offset="100%" stop-color="#050b14" stop-opacity="1" />
+    </linearGradient>
+
+    <!-- Headlight Beam Gradient -->
+    <linearGradient id="lightBeam" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.8" />
+      <stop offset="40%" stop-color="#00d2ff" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#00d2ff" stop-opacity="0" />
+    </linearGradient>
+
+    <!-- Wheel Rim Gradient -->
+    <linearGradient id="rimGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" />
+      <stop offset="50%" stop-color="#334155" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+
+    <!-- Soft Glow Filter -->
+    <filter id="glowBlue" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="6" result="blur1" />
+      <feGaussianBlur stdDeviation="14" result="blur2" />
+      <feMerge>
+        <feMergeNode in="blur2" />
+        <feMergeNode in="blur1" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="groundShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="10" />
+    </filter>
+  </defs>
+
+  <!-- Card Background -->
+  <rect width="800" height="500" rx="16" fill="url(#bgCR)" />
+
+  <!-- Subtle Ambient Backdrop Grid & Light Streaks -->
+  <g opacity="0.12">
+    <line x1="0" y1="340" x2="800" y2="340" stroke="#38bdf8" stroke-width="1" />
+    <line x1="0" y1="365" x2="800" y2="365" stroke="#38bdf8" stroke-width="0.7" stroke-dasharray="8 12" />
+    <line x1="0" y1="395" x2="800" y2="395" stroke="#38bdf8" stroke-width="0.5" stroke-dasharray="16 24" />
+  </g>
+
+  <!-- Speed Light Trails in Background -->
+  <path d="M 60 270 L 160 270" stroke="#0284c7" stroke-width="1.5" opacity="0.4" stroke-linecap="round" />
+  <path d="M 90 290 L 175 290" stroke="#38bdf8" stroke-width="2" opacity="0.6" stroke-linecap="round" />
+  <path d="M 40 315 L 180 315" stroke="#00d2ff" stroke-width="1" opacity="0.3" stroke-linecap="round" />
+
+  <!-- Headlight Forward Illumination Beam -->
+  <polygon points="630,278 780,260 790,345 625,295" fill="url(#lightBeam)" />
+
+  <!-- Ground Shadows & Undercar Glow -->
+  <ellipse cx="395" cy="338" rx="265" ry="14" fill="#020617" filter="url(#groundShadow)" opacity="0.95" />
+  <ellipse cx="395" cy="336" rx="190" ry="7" fill="#0284c7" filter="url(#groundShadow)" opacity="0.45" />
+
+  <!-- ================= CAR BODY ================= -->
+  <g id="sportsCar">
+    <!-- Main Chassis Silhouette -->
+    <!-- Proportions: Nose at x:638, A-pillar at x:470, Roof top at x:370, Rear spoiler at x:165 -->
+    <path
+      d="
+        M 175 328
+        L 210 328
+        A 46 46 0 0 1 300 328
+        L 488 328
+        A 46 46 0 0 1 578 328
+        L 628 328
+        C 638 328 642 322 642 316
+        C 642 308 635 298 626 292
+        C 614 284 585 272 550 262
+        C 505 249 475 242 458 238
+        C 432 208 405 190 368 188
+        C 328 186 288 195 248 220
+        C 218 238 185 264 168 272
+        C 152 276 142 284 145 294
+        C 148 304 156 314 164 322
+        Z
+      "
+      fill="url(#carBodyGrad)"
+      stroke="url(#cyanNeon)"
+      stroke-width="2.5"
+      filter="url(#glowBlue)"
+    />
+
+    <!-- Solid base body layer without blur for crisp edges -->
+    <path
+      d="
+        M 175 328
+        L 210 328
+        A 46 46 0 0 1 300 328
+        L 488 328
+        A 46 46 0 0 1 578 328
+        L 628 328
+        C 638 328 642 322 642 316
+        C 642 308 635 298 626 292
+        C 614 284 585 272 550 262
+        C 505 249 475 242 458 238
+        C 432 208 405 190 368 188
+        C 328 186 288 195 248 220
+        C 218 238 185 264 168 272
+        C 152 276 142 284 145 294
+        C 148 304 156 314 164 322
+        Z
+      "
+      fill="url(#carBodyGrad)"
+      stroke="#38bdf8"
+      stroke-width="1.8"
+    />
+
+    <!-- Cabin Glass Canopy -->
+    <path
+      d="
+        M 450 236
+        C 426 210 402 195 368 194
+        C 334 193 298 202 262 225
+        C 240 239 218 258 206 266
+        L 348 262
+        L 450 248
+        Z
+      "
+      fill="url(#glassGrad)"
+      stroke="rgba(56,189,248,0.5)"
+      stroke-width="1.2"
+    />
+
+    <!-- B-Pillar Divider & Window Highlight -->
+    <line x1="348" y1="195" x2="348" y2="262" stroke="#0b1622" stroke-width="4" />
+    <line x1="348" y1="195" x2="348" y2="262" stroke="#38bdf8" stroke-width="1" opacity="0.6" />
+    <path d="M 440 238 L 372 200" stroke="#ffffff" stroke-width="1" opacity="0.4" stroke-linecap="round" />
+
+    <!-- Aerodynamic Side Contour / Shoulder Crease Line -->
+    <path
+      d="M 160 278 C 210 274 340 268 460 252 C 530 242 590 264 624 286"
+      fill="none"
+      stroke="#38bdf8"
+      stroke-width="1.8"
+      opacity="0.85"
+    />
+    <path
+      d="M 215 324 L 295 324 M 495 324 L 572 324"
+      stroke="#00d2ff"
+      stroke-width="2"
+      opacity="0.6"
+    />
+
+    <!-- Door Panel & Handle -->
+    <path d="M 338 264 L 334 324" stroke="rgba(56,189,248,0.35)" stroke-width="1.2" />
+    <rect x="360" y="272" width="22" height="3" rx="1.5" fill="#38bdf8" opacity="0.8" />
+
+    <!-- Side View Mirror -->
+    <polygon points="450,244 466,242 464,248 448,247" fill="#0b1723" stroke="#38bdf8" stroke-width="1.2" />
+
+    <!-- Front LED Headlight Blade (Laser Cyan) -->
+    <path
+      d="M 626 292 L 602 286 L 610 295 Z"
+      fill="#ffffff"
+      filter="url(#glowBlue)"
+    />
+    <path
+      d="M 632 292 L 596 284"
+      stroke="#ffffff"
+      stroke-width="2.5"
+      stroke-linecap="round"
+      filter="url(#glowBlue)"
+    />
+
+    <!-- Rear LED Taillight Blade (Neon Red/Orange Accent) -->
+    <path
+      d="M 145 288 C 144 282 152 278 166 274"
+      fill="none"
+      stroke="#ef4444"
+      stroke-width="3"
+      stroke-linecap="round"
+      filter="url(#glowBlue)"
+    />
+
+    <!-- Front Lower Air Intake / Splitter -->
+    <path d="M 612 316 L 638 316 L 634 324 L 606 324 Z" fill="#060c14" stroke="#0284c7" stroke-width="1" />
+
+    <!-- ================= WHEELS ================= -->
+    <!-- REAR WHEEL (Center: 255, 328) -->
+    <g id="rearWheel" transform="translate(255, 328)">
+      <!-- Tire Outer Rubber -->
+      <circle cx="0" cy="0" r="37" fill="#070c14" stroke="#1e293b" stroke-width="2" />
+      <circle cx="0" cy="0" r="34" fill="#0b1320" />
+      <!-- Rim Outer Ring -->
+      <circle cx="0" cy="0" r="28" fill="url(#rimGrad)" stroke="#38bdf8" stroke-width="1.8" />
+      <circle cx="0" cy="0" r="23" fill="#09111c" />
+      
+      <!-- Disc Brake & Caliper -->
+      <circle cx="0" cy="0" r="18" fill="#1e293b" stroke="#475569" stroke-width="0.8" stroke-dasharray="2 3" />
+      <path d="M -12 -12 A 16 16 0 0 1 -2 -17 L -4 -13 A 12 12 0 0 0 -10 -9 Z" fill="#38bdf8" />
+
+      <!-- 5 Twin-Spoke Sports Rim -->
+      <g stroke="#38bdf8" stroke-width="1.8" opacity="0.9">
+        <line x1="0" y1="0" x2="0" y2="-23" />
+        <line x1="0" y1="0" x2="22" y2="-7" />
+        <line x1="0" y1="0" x2="14" y2="19" />
+        <line x1="0" y1="0" x2="-14" y2="19" />
+        <line x1="0" y1="0" x2="-22" y2="-7" />
+      </g>
+      <!-- Center Cap -->
+      <circle cx="0" cy="0" r="7" fill="#0284c7" stroke="#ffffff" stroke-width="1" />
+      <circle cx="0" cy="0" r="3" fill="#ffffff" />
+    </g>
+
+    <!-- FRONT WHEEL (Center: 533, 328) -->
+    <g id="frontWheel" transform="translate(533, 328)">
+      <!-- Tire Outer Rubber -->
+      <circle cx="0" cy="0" r="37" fill="#070c14" stroke="#1e293b" stroke-width="2" />
+      <circle cx="0" cy="0" r="34" fill="#0b1320" />
+      <!-- Rim Outer Ring -->
+      <circle cx="0" cy="0" r="28" fill="url(#rimGrad)" stroke="#38bdf8" stroke-width="1.8" />
+      <circle cx="0" cy="0" r="23" fill="#09111c" />
+
+      <!-- Disc Brake & Caliper -->
+      <circle cx="0" cy="0" r="18" fill="#1e293b" stroke="#475569" stroke-width="0.8" stroke-dasharray="2 3" />
+      <path d="M 2 -17 A 16 16 0 0 1 12 -12 L 10 -9 A 12 12 0 0 0 4 -13 Z" fill="#38bdf8" />
+
+      <!-- 5 Twin-Spoke Sports Rim -->
+      <g stroke="#38bdf8" stroke-width="1.8" opacity="0.9">
+        <line x1="0" y1="0" x2="0" y2="-23" />
+        <line x1="0" y1="0" x2="22" y2="-7" />
+        <line x1="0" y1="0" x2="14" y2="19" />
+        <line x1="0" y1="0" x2="-14" y2="19" />
+        <line x1="0" y1="0" x2="-22" y2="-7" />
+      </g>
+      <!-- Center Cap -->
+      <circle cx="0" cy="0" r="7" fill="#0284c7" stroke="#ffffff" stroke-width="1" />
+      <circle cx="0" cy="0" r="3" fill="#ffffff" />
+    </g>
+  </g>
+
+  <!-- ================= FLOATING HUD CARDS ================= -->
+  <!-- Wallet Metric Card (Top Left) -->
+  <g transform="translate(60, 60)">
+    <rect width="210" height="74" rx="14" fill="rgba(8,17,28,0.85)" stroke="rgba(56,189,248,0.3)" />
+    <circle cx="28" cy="37" r="14" fill="rgba(2,132,199,0.2)" stroke="#38bdf8" stroke-width="1" />
+    <!-- Wallet Icon SVG -->
+    <path d="M 22 34 L 34 34 M 22 38 L 34 38 M 31 36 L 31 36.1" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round" />
+    <text x="52" y="30" fill="#94A3B8" font-family="system-ui, sans-serif" font-size="10" font-weight="700" letter-spacing="1">WALLET BALANCE</text>
+    <text x="52" y="54" fill="#F8FAFC" font-family="system-ui, sans-serif" font-size="20" font-weight="800">&#8377; 14,500</text>
+  </g>
+
+  <!-- Security Session Card (Top Right) -->
+  <g transform="translate(530, 60)">
+    <rect width="210" height="74" rx="14" fill="rgba(8,17,28,0.85)" stroke="rgba(56,189,248,0.3)" />
+    <circle cx="28" cy="37" r="14" fill="rgba(16,185,129,0.15)" stroke="#10b981" stroke-width="1" />
+    <!-- Shield Check Icon -->
+    <path d="M 28 30 L 33 32 L 33 37 C 33 40 28 43 28 43 C 28 43 23 40 23 37 L 23 32 Z" fill="none" stroke="#10b981" stroke-width="1.2" />
+    <text x="50" y="30" fill="#94A3B8" font-family="system-ui, sans-serif" font-size="10" font-weight="700" letter-spacing="1">AUTHENTICATION</text>
+    <text x="50" y="53" fill="#38BDF8" font-family="system-ui, sans-serif" font-size="16" font-weight="700">JWT Protected</text>
+  </g>
+
+  <!-- Project Badge (Bottom Left) -->
+  <g transform="translate(40, 424)">
+    <rect width="250" height="38" rx="19" fill="rgba(6,12,20,0.8)" stroke="rgba(56,189,248,0.3)" />
+    <circle cx="20" cy="19" r="4" fill="#00d2ff" filter="url(#glowBlue)" />
+    <text x="35" y="24" fill="#F8FAFC" font-family="system-ui, sans-serif" font-size="12" font-weight="600">Car Rental MERN App</text>
+  </g>
+
+  <!-- Instant Booking Pill (Bottom Right) -->
+  <g transform="translate(580, 424)">
+    <rect width="180" height="38" rx="19" fill="rgba(6,12,20,0.8)" stroke="rgba(16,185,129,0.3)" />
+    <circle cx="20" cy="19" r="3.5" fill="#10B981" />
+    <text x="35" y="24" fill="#34D399" font-family="system-ui, sans-serif" font-size="11" font-weight="700">Instant Reservation</text>
+  </g>
+</svg>

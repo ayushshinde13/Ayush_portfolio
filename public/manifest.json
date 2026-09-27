@@ -1,0 +1,17 @@
+{
+  "name": "Er. Ayush Kumar Shinde portfolio",
+  "short_name": "Ayush.dev",
+  "description": "Frontend Developer & MERN Stack Developer personal portfolio and case studies.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#08090D",
+  "theme_color": "#6366F1",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
