@@ -8,6 +8,8 @@ import { Navbar } from '@/components/navbar/Navbar';
 import { Footer } from '@/components/footer/Footer';
 import { generatePortfolioMetadata, buildPersonJsonLd } from '@/lib/seo';
 
+import { ResumeProvider } from '@/context/ResumeContext';
+
 const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin'],
@@ -55,19 +57,21 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <LenisProvider>
-            {/* Preloader intro sequence */}
-            <Preloader />
+            <ResumeProvider>
+              {/* Preloader intro sequence */}
+              <Preloader />
 
-            {/* Global floating navigation */}
-            <Navbar />
+              {/* Global floating navigation */}
+              <Navbar />
 
-            {/* Main content landmark */}
-            <div id="main-content" tabIndex={-1} className="relative z-10 focus:outline-none">
-              {children}
-            </div>
+              {/* Main content landmark */}
+              <div id="main-content" tabIndex={-1} className="relative z-10 focus:outline-none">
+                {children}
+              </div>
 
-            {/* Global footer */}
-            <Footer />
+              {/* Global footer */}
+              <Footer />
+            </ResumeProvider>
           </LenisProvider>
         </ThemeProvider>
       </body>

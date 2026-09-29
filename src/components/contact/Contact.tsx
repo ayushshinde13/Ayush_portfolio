@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/Badge';
 import { GlassCard } from '@/components/ui/GlassCard';
 import { Button } from '@/components/ui/Button';
 import { Send, Mail, MapPin, Clock, CheckCircle, AlertCircle } from 'lucide-react';
-import { GithubIcon, LinkedinIcon, TwitterIcon } from '@/components/ui/Icons';
+import { GithubIcon, LinkedinIcon } from '@/components/ui/Icons';
 import { useGsapContext } from '@/hooks/useGsapContext';
 import { gsap } from '@/lib/gsap';
 
@@ -121,7 +121,7 @@ export function Contact() {
       {/* Header */}
       <div className="contact-header flex flex-col items-center text-center mb-8 sm:mb-12 md:mb-16">
         <Badge variant="glow" className="mb-4">
-          <span>06 / GET IN TOUCH</span>
+          <span>05 / GET IN TOUCH</span>
         </Badge>
         <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-[var(--text-primary)]">
           Let&apos;s build something{' '}
@@ -200,15 +200,6 @@ export function Contact() {
                   aria-label="LinkedIn Profile"
                 >
                   <LinkedinIcon className="w-4 h-4" />
-                </a>
-                <a
-                  href={personalInfo.socials.twitter}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 rounded-xl border border-slate-200 dark:border-[var(--border-subtle)] bg-slate-50 dark:bg-[var(--bg-card)] hover:border-indigo-500/50 text-slate-800 dark:text-[var(--text-primary)] transition-all hover:scale-110 shadow-xs"
-                  aria-label="Twitter Profile"
-                >
-                  <TwitterIcon className="w-4 h-4" />
                 </a>
               </div>
             </div>

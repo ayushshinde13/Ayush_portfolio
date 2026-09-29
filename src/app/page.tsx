@@ -4,8 +4,6 @@ import { About } from '@/components/about/About';
 import { Skills } from '@/components/skills/Skills';
 import { ProjectGrid } from '@/components/projects/ProjectGrid';
 import { Experience } from '@/components/experience/Experience';
-import { Testimonials } from '@/components/testimonials/Testimonials';
-import { Contact } from '@/components/contact/Contact';
 
 export default function HomePage() {
   return (
@@ -29,12 +27,6 @@ export default function HomePage() {
 
       {/* 5. Experience Timeline Section */}
       <Experience />
-
-      {/* 6. Testimonials Section */}
-      <Testimonials />
-
-      {/* 7. Contact Section */}
-      <Contact />
     </main>
   );
 }

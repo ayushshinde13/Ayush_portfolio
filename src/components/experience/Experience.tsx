@@ -4,10 +4,11 @@ import React, { useRef } from 'react';
 import { experience, personalInfo } from '@/data/portfolio';
 import { Badge } from '@/components/ui/Badge';
 import { GlassCard } from '@/components/ui/GlassCard';
-import { Briefcase, Calendar, MapPin, CheckCircle2, GraduationCap, Sparkles } from 'lucide-react';
+import { Briefcase, Calendar, MapPin, CheckCircle2, GraduationCap, Sparkles, Globe, ArrowUpRight, FileDown, Eye } from 'lucide-react';
 import { useGsapContext } from '@/hooks/useGsapContext';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
-import { gsap, ScrollTrigger } from '@/lib/gsap';
+import { gsap } from '@/lib/gsap';
+import { useResume } from '@/context/ResumeContext';
 
 export function Experience() {
   const containerRef = useRef<HTMLElement>(null);
@@ -15,6 +16,7 @@ export function Experience() {
   const progressBarRef = useRef<HTMLDivElement>(null);
   const entriesRef = useRef<(HTMLDivElement | null)[]>([]);
   const prefersReducedMotion = useReducedMotion();
+  const { openResume } = useResume();
 
   useGsapContext(
     () => {
@@ -68,7 +70,7 @@ export function Experience() {
             ease: 'none',
             scrollTrigger: {
               trigger: timelineTrackRef.current,
-              start: 'top 70%',
+              start: 'top 75%',
               end: 'bottom 85%',
               scrub: 1,
             },
@@ -76,20 +78,14 @@ export function Experience() {
         );
       }
 
-      // 3. Independent side-slide and fade-in per timeline entry
-      entriesRef.current.forEach((entry, index) => {
+      // 3. Fluid upward reveal for each milestone entry
+      entriesRef.current.forEach((entry) => {
         if (!entry) return;
-
-        const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
-        const isEven = index % 2 === 0;
-        // On desktop, alternate entry slide direction: even from left, odd from right
-        // On mobile, all slide in from right (+35px)
-        const initialX = isDesktop ? (isEven ? -60 : 60) : 40;
 
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: entry,
-            start: 'top 80%',
+            start: 'top 85%',
             toggleActions: 'play none none none',
           },
         });
@@ -97,12 +93,12 @@ export function Experience() {
         tl.fromTo(
           entry,
           {
-            x: initialX,
+            y: 40,
             opacity: 0,
-            scale: 0.96,
+            scale: 0.98,
           },
           {
-            x: 0,
+            y: 0,
             opacity: 1,
             scale: 1,
             duration: 0.8,
@@ -115,14 +111,14 @@ export function Experience() {
         if (pinNode) {
           tl.fromTo(
             pinNode,
-            { scale: 0.5, boxShadow: '0 0 0px rgba(99, 102, 241, 0)' },
+            { scale: 0.6, boxShadow: '0 0 0px rgba(99, 102, 241, 0)' },
             {
               scale: 1.15,
               boxShadow: '0 0 20px rgba(99, 102, 241, 0.8)',
               duration: 0.4,
               ease: 'back.out(2)',
             },
-            '-=0.5'
+            '-=0.4'
           ).to(pinNode, {
             scale: 1,
             duration: 0.3,
@@ -160,59 +156,56 @@ export function Experience() {
       {/* Main Interactive Timeline Area */}
       <div
         ref={timelineTrackRef}
-        className="relative w-full pb-8"
+        className="relative w-full pb-4"
       >
-        {/* Background Vertical Guide Track */}
-        {/* On mobile: pinned to left-5. On desktop: pinned to center (50%) */}
-        <div className="absolute left-5 sm:left-6 lg:left-1/2 top-4 bottom-8 w-[2px] -translate-x-1/2 bg-[var(--border-subtle)] pointer-events-none" />
+        {/* Background Vertical Guide Track on the Left */}
+        <div className="absolute left-4 sm:left-6 md:left-8 top-3 bottom-6 w-[2px] -translate-x-1/2 bg-[var(--border-subtle)] pointer-events-none" />
 
         {/* Animated Glowing Progress Line */}
         <div
           ref={progressBarRef}
-          className="absolute left-5 sm:left-6 lg:left-1/2 top-4 w-[2px] -translate-x-1/2 bg-gradient-to-b from-indigo-500 via-purple-500 to-cyan-400 pointer-events-none shadow-[0_0_12px_rgba(99,102,241,0.6)] z-0 rounded-full"
+          className="absolute left-4 sm:left-6 md:left-8 top-3 w-[2px] -translate-x-1/2 bg-gradient-to-b from-indigo-500 via-purple-500 to-cyan-400 pointer-events-none shadow-[0_0_12px_rgba(99,102,241,0.6)] z-0 rounded-full"
           style={{ height: '0%' }}
         />
 
         {/* Timeline Entries Stack */}
-        <div className="space-y-12 lg:space-y-16">
+        <div className="space-y-10 sm:space-y-14">
           {experience.map((entry, index) => {
-            const isEven = index % 2 === 0;
-
             return (
               <div
                 key={entry.id}
                 ref={(el) => {
                   entriesRef.current[index] = el;
                 }}
-                className={`relative flex items-center w-full will-change-transform ${
-                  // On desktop: alternate left (even) and right (odd)
-                  isEven ? 'lg:flex-row-reverse' : 'lg:flex-row'
-                }`}
+                className="relative pl-10 sm:pl-16 md:pl-20 w-full will-change-transform"
               >
-                {/* Timeline Center/Left Pin Node */}
+                {/* Timeline Pin Node on the vertical track */}
                 <div
-                  className="timeline-node-pin absolute left-5 sm:left-6 lg:left-1/2 -translate-x-1/2 z-20 flex items-center justify-center w-8 h-8 rounded-full bg-[var(--bg-primary)] border-2 border-indigo-500 shadow-md shadow-indigo-500/30 cursor-default"
+                  className="timeline-node-pin absolute left-4 sm:left-6 md:left-8 -translate-x-1/2 top-7 z-20 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[var(--bg-primary)] border-2 border-indigo-500 shadow-md shadow-indigo-500/40 cursor-default"
                 >
                   <div className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-indigo-400 to-cyan-400" />
                 </div>
 
-                {/* Content Card Layout */}
-                {/* Mobile: padded on left to clear timeline track */}
-                {/* Desktop: takes 50% width on left or right */}
-                <div
-                  className={`w-full lg:w-1/2 pl-12 sm:pl-16 lg:pl-0 ${
-                    isEven ? 'lg:pr-12' : 'lg:pl-12'
-                  }`}
-                >
-                  <GlassCard className="p-6 sm:p-8 border-[var(--border-subtle)] hover:border-indigo-500/40 transition-all duration-300 shadow-xl group">
-                    {/* Header Row: Company, Role, Status Badge, Period */}
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                {/* Content Card Layout - Wide Split Grid */}
+                <GlassCard className="p-6 sm:p-8 md:p-9 border-[var(--border-subtle)] hover:border-indigo-500/40 transition-all duration-300 shadow-xl group relative overflow-hidden">
+                  {/* Subtle ambient light aura */}
+                  <div className="absolute -top-24 -right-24 w-60 h-60 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none group-hover:bg-indigo-500/15 transition-all duration-500" />
+
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 relative z-10">
+                    {/* Left Column (Metadata & Role Info): lg:col-span-5 */}
+                    <div className="lg:col-span-5 flex flex-col justify-between space-y-5 lg:pr-6 lg:border-r border-[var(--border-subtle)]/70">
                       <div>
-                        <div className="flex items-center gap-2 flex-wrap mb-1">
-                          <span className="text-xs font-mono font-semibold text-indigo-600 dark:text-indigo-400 flex items-center gap-1.5">
-                            <Briefcase className="w-3.5 h-3.5" />
-                            {entry.company}
-                          </span>
+                        {/* Company Header with Icon & Current Status */}
+                        <div className="flex items-center justify-between gap-3 mb-3">
+                          <div className="flex items-center gap-2.5">
+                            <div className="w-9 h-9 rounded-xl bg-indigo-500/15 border border-indigo-500/30 flex items-center justify-center text-indigo-400 font-bold text-xs shadow-inner">
+                              {entry.current ? <Briefcase className="w-4 h-4" /> : <Sparkles className="w-4 h-4" />}
+                            </div>
+                            <span className="text-xs font-mono font-semibold text-indigo-500 dark:text-indigo-400">
+                              {entry.company}
+                            </span>
+                          </div>
+
                           {entry.status && (
                             <Badge
                               variant={entry.current ? 'pulse' : 'outline'}
@@ -224,61 +217,134 @@ export function Experience() {
                           )}
                         </div>
 
-                        <h3 className="text-xl sm:text-2xl font-bold text-[var(--text-primary)]">
+                        {/* Role Title */}
+                        <h3 className="text-xl sm:text-2xl font-extrabold text-[var(--text-primary)] tracking-tight">
                           {entry.role}
                         </h3>
-                      </div>
 
-                      {/* Period & Location Metadata */}
-                      <div className="flex sm:flex-col items-start sm:items-end gap-1.5 text-xs font-mono text-slate-600 dark:text-[var(--text-muted)] shrink-0">
-                        <span className="flex items-center gap-1 bg-slate-100 dark:bg-white/5 px-2.5 py-1 rounded-md border border-slate-200 dark:border-white/5 font-semibold text-slate-700 dark:text-slate-300">
-                          <Calendar className="w-3 h-3 text-indigo-600 dark:text-indigo-400" />
-                          {entry.period}
-                        </span>
-                        {entry.location && (
-                          <span className="flex items-center gap-1 text-[11px]">
-                            <MapPin className="w-3 h-3 text-cyan-700 dark:text-cyan-400" />
-                            {entry.location}
+                        {/* Period & Location Metadata Chips */}
+                        <div className="flex flex-wrap items-center gap-2 mt-3 text-xs font-mono">
+                          <span className="flex items-center gap-1.5 bg-slate-100 dark:bg-white/5 px-2.5 py-1 rounded-md border border-slate-200 dark:border-white/5 font-semibold text-slate-700 dark:text-slate-300">
+                            <Calendar className="w-3.5 h-3.5 text-indigo-500 dark:text-indigo-400" />
+                            {entry.period}
                           </span>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Brief Narrative */}
-                    {entry.description && (
-                      <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed mb-5">
-                        {entry.description}
-                      </p>
-                    )}
-
-                    {/* Bullet Points */}
-                    <div className="space-y-2.5 mb-6">
-                      {entry.bulletPoints.map((bullet, bIdx) => (
-                        <div
-                          key={bIdx}
-                          className="flex items-start gap-2.5 text-xs sm:text-sm text-[var(--text-secondary)]"
-                        >
-                          <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
-                          <span className="leading-relaxed">{bullet}</span>
+                          {entry.location && (
+                            <span className="flex items-center gap-1.5 bg-slate-100 dark:bg-white/5 px-2.5 py-1 rounded-md border border-slate-200 dark:border-white/5 text-slate-600 dark:text-slate-400">
+                              <MapPin className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
+                              {entry.location}
+                            </span>
+                          )}
                         </div>
-                      ))}
+                      </div>
+
+                      {/* Domain Highlights Pill Box */}
+                      <div className="p-3.5 rounded-xl bg-indigo-500/5 dark:bg-indigo-950/20 border border-indigo-500/15 text-xs text-[var(--text-secondary)]">
+                        <span className="block font-mono text-[10px] font-bold text-indigo-500 dark:text-indigo-400 uppercase tracking-wider mb-1">
+                          {entry.current ? 'Primary Scope & Environment' : 'Engineering Focus'}
+                        </span>
+                        <span className="leading-snug">
+                          {entry.current
+                            ? 'Production React/Next.js Apps, Live WebSockets & Project OS Platform'
+                            : 'Full-Stack MERN Architecture, JWT Security & Cloud Deployments'}
+                        </span>
+                      </div>
                     </div>
 
-                    {/* Tech Tags */}
-                    {entry.techTags && entry.techTags.length > 0 && (
-                      <div className="flex flex-wrap gap-1.5 pt-4 border-t border-[var(--border-subtle)]">
-                        {entry.techTags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="px-2.5 py-1 text-[11px] font-mono font-medium rounded-lg bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-[var(--text-muted)] group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors"
+                    {/* Right Column (Contributions & Stack): lg:col-span-7 */}
+                    <div className="lg:col-span-7 flex flex-col justify-between space-y-5">
+                      {/* Description */}
+                      {entry.description && (
+                        <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed">
+                          {entry.description}
+                        </p>
+                      )}
+
+                      {/* Bullet Points with subtle row highlighting */}
+                      <div className="space-y-2.5">
+                        {entry.bulletPoints.map((bullet, bIdx) => (
+                          <div
+                            key={bIdx}
+                            className="flex items-start gap-3 text-xs sm:text-sm text-[var(--text-secondary)] p-2.5 rounded-lg hover:bg-slate-100/50 dark:hover:bg-white/[0.03] transition-colors"
                           >
-                            {tag}
-                          </span>
+                            <CheckCircle2 className="w-4 h-4 text-emerald-500 dark:text-emerald-400 shrink-0 mt-0.5" />
+                            <span className="leading-relaxed">{bullet}</span>
+                          </div>
                         ))}
                       </div>
-                    )}
-                  </GlassCard>
-                </div>
+
+                      {/* Live Production Platforms Shipped */}
+                      {entry.liveProducts && entry.liveProducts.length > 0 && (
+                        <div className="pt-4 border-t border-[var(--border-subtle)]">
+                          <div className="text-[11px] font-mono text-[var(--text-muted)] mb-2.5 flex items-center justify-between">
+                            <span className="flex items-center gap-1.5 text-indigo-600 dark:text-indigo-400 font-semibold uppercase tracking-wider text-[10px]">
+                              <Globe className="w-3.5 h-3.5 text-cyan-500 dark:text-cyan-400" />
+                              Shipped Platforms &amp; Live Portfolios:
+                            </span>
+                            <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-mono font-medium flex items-center gap-1">
+                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                              Live in Production
+                            </span>
+                          </div>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                            {entry.liveProducts.map((prod, pIdx) => {
+                              const isLastOdd =
+                                entry.liveProducts &&
+                                entry.liveProducts.length % 2 !== 0 &&
+                                pIdx === entry.liveProducts.length - 1;
+
+                              return (
+                                <a
+                                  key={prod.name}
+                                  href={prod.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className={`group/prod flex items-center justify-between p-2.5 sm:p-3 rounded-xl bg-slate-100/70 dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 hover:border-indigo-500/50 hover:bg-indigo-50/50 dark:hover:bg-indigo-500/10 transition-all duration-200 cursor-pointer shadow-xs hover:shadow-md ${
+                                    isLastOdd ? 'sm:col-span-2' : ''
+                                  }`}
+                                >
+                                  <div className="min-w-0 pr-2">
+                                    <div className="flex items-center gap-1.5">
+                                      <span className="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-100 group-hover/prod:text-indigo-600 dark:group-hover/prod:text-indigo-300 transition-colors truncate">
+                                        {prod.name}
+                                      </span>
+                                    </div>
+                                    {prod.category && (
+                                      <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400 block truncate mt-0.5">
+                                        {prod.category}
+                                      </span>
+                                    )}
+                                  </div>
+                                  <div className="w-7 h-7 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center shrink-0 group-hover/prod:bg-indigo-500 group-hover/prod:text-white transition-all">
+                                    <ArrowUpRight className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400 group-hover/prod:text-white transition-colors" />
+                                  </div>
+                                </a>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Tech Stack Chips */}
+                      {entry.techTags && entry.techTags.length > 0 && (
+                        <div className="pt-4 border-t border-[var(--border-subtle)]">
+                          <div className="text-[11px] font-mono text-[var(--text-muted)] mb-2 flex items-center gap-1.5">
+                            <span>Key Technologies:</span>
+                          </div>
+                          <div className="flex flex-wrap gap-1.5">
+                            {entry.techTags.map((tag) => (
+                              <span
+                                key={tag}
+                                className="px-2.5 py-1 text-[11px] font-mono font-medium rounded-lg bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-700 dark:text-[var(--text-muted)] group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </GlassCard>
               </div>
             );
           })}
@@ -298,24 +364,51 @@ export function Experience() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {personalInfo.education.map((edu, idx) => (
-              <GlassCard key={idx} className="p-6 border-[var(--border-subtle)] space-y-3">
+              <GlassCard
+                key={idx}
+                className="p-6 sm:p-7 border-[var(--border-subtle)] hover:border-indigo-500/40 transition-all duration-300 shadow-lg space-y-3 relative overflow-hidden group"
+              >
                 <div className="flex items-center justify-between text-xs font-mono text-indigo-600 dark:text-indigo-400 font-semibold">
-                  <span>{edu.period}</span>
-                  <span className="px-2 py-0.5 rounded-md bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-200 dark:border-indigo-500/20 text-indigo-700 dark:text-indigo-300 font-bold">
+                  <span className="flex items-center gap-1.5 text-slate-700 dark:text-slate-300">
+                    <Calendar className="w-3.5 h-3.5 text-indigo-500 dark:text-indigo-400" />
+                    {edu.period}
+                  </span>
+                  <span className="px-2.5 py-0.5 rounded-md bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-200 dark:border-indigo-500/20 text-indigo-700 dark:text-indigo-300 font-bold font-mono">
                     {edu.grade}
                   </span>
                 </div>
-                <h4 className="text-base font-bold text-[var(--text-primary)]">
+                <h4 className="text-base sm:text-lg font-bold text-[var(--text-primary)]">
                   {edu.degree}
                 </h4>
-                <p className="text-xs text-[var(--text-muted)] font-mono">
+                <p className="text-xs text-[var(--text-muted)] font-mono flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-500/60" />
                   {edu.institution}
                 </p>
-                <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed pt-2 border-t border-[var(--border-subtle)]">
+                <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed pt-3 border-t border-[var(--border-subtle)]">
                   {edu.description}
                 </p>
               </GlassCard>
             ))}
+          </div>
+
+          {/* Resume View & Download Callout */}
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+            <button
+              type="button"
+              onClick={openResume}
+              className="inline-flex items-center gap-2.5 px-6 py-3 rounded-2xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-semibold text-sm shadow-xl shadow-indigo-500/25 transition-all duration-300 hover:scale-103 cursor-pointer group"
+            >
+              <Eye className="w-4.5 h-4.5 group-hover:scale-110 transition-transform" />
+              <span>View Resume in Portfolio</span>
+            </button>
+            <a
+              href="/resume.pdf"
+              download="Ayush_Kumar_Shinde_Resume.pdf"
+              className="inline-flex items-center gap-2.5 px-5 py-3 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 hover:text-white font-semibold text-sm transition-all duration-300 hover:scale-103 cursor-pointer"
+            >
+              <FileDown className="w-4.5 h-4.5 text-indigo-400" />
+              <span>Download PDF</span>
+            </a>
           </div>
         </div>
       )}

@@ -173,7 +173,7 @@ export function SkillsExplorer() {
           See These Skills in Production
         </h2>
         <p className="text-sm sm:text-base text-slate-600 dark:text-[var(--text-secondary)] max-w-xl mx-auto mb-6 leading-relaxed">
-          From live WebSocket chat systems at Hindustan Innovation to MERN stack e-commerce with payment processing, explore the live deployed products.
+          From live WebSocket chat systems at Hindustaan Innovations Private Limited to MERN stack e-commerce with payment processing, explore the live deployed products.
         </p>
         <Link href="/projects">
           <Button size="lg" variant="glow" rightIcon={<ArrowRight className="w-4 h-4" />}>

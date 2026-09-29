@@ -2,7 +2,7 @@
 
 import React, { useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { ArrowDown, ArrowUpRight, Sparkles, Terminal, Code2, Layers } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, Sparkles, Terminal, Code2, Layers, FileDown, Eye } from 'lucide-react';
 import { personalInfo } from '@/data/portfolio';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
@@ -12,6 +12,7 @@ import { useGsapContext } from '@/hooks/useGsapContext';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 import { gsap } from '@/lib/gsap';
 import { useLenis } from '@/providers/lenis-provider';
+import { useResume } from '@/context/ResumeContext';
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -19,9 +20,9 @@ export function Hero() {
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const badgesRef = useRef<HTMLDivElement>(null);
-  const scrollIndicatorRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useReducedMotion();
   const { scrollTo } = useLenis();
+  const { openResume } = useResume();
 
   // Interactive mouse parallax on background
   useEffect(() => {
@@ -101,14 +102,6 @@ export function Hero() {
         { opacity: 0, scale: 0.92, x: 35 },
         { opacity: 1, scale: 1, x: 0, duration: 0.9, ease: 'power3.out' },
         '-=0.7'
-      );
-
-      // Scroll indicator fade
-      tl.fromTo(
-        scrollIndicatorRef.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 1 },
-        '-=0.2'
       );
 
       // Smooth scroll parallax on Background.png
@@ -244,22 +237,32 @@ export function Hero() {
                 Explore Selected Work
               </Button>
             </div>
-            <div className="hero-cta-btn">
+            <div className="hero-cta-btn flex items-center gap-2">
               <Button
                 size="md"
                 variant="secondary"
-                onClick={() => scrollTo('#contact')}
-                className="px-5 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-base"
+                onClick={openResume}
+                rightIcon={<Eye className="w-4 h-4 text-indigo-400" />}
+                className="px-5 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-base cursor-pointer"
               >
-                Start a Conversation
+                View Resume
               </Button>
+              <a
+                href="/resume.pdf"
+                download="Ayush_Kumar_Shinde_Resume.pdf"
+                title="Download Official Resume (PDF)"
+                aria-label="Download Official Resume (PDF)"
+                className="p-2.5 sm:p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white transition-all cursor-pointer flex items-center justify-center hover:scale-105 active:scale-95"
+              >
+                <FileDown className="w-4.5 h-4.5 text-indigo-400" />
+              </a>
             </div>
           </div>
 
           {/* Interactive Floating Metric Badges */}
           <div
             ref={badgesRef}
-            className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3 w-full max-w-2xl"
+            className="grid grid-cols-2 gap-2.5 sm:gap-3.5 w-full max-w-md"
           >
             {personalInfo.stats.map((stat, idx) => (
               <div
@@ -293,21 +296,6 @@ export function Hero() {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Animated Scroll Down Indicator */}
-      <div
-        ref={scrollIndicatorRef}
-        onClick={() => scrollTo('#about')}
-        className="mt-8 sm:mt-10 lg:mt-0 lg:absolute lg:bottom-6 lg:left-1/2 lg:-translate-x-1/2 flex flex-col items-center gap-1.5 cursor-pointer text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors group z-20"
-        aria-label="Scroll to About section"
-      >
-        <span className="text-[10px] uppercase tracking-widest font-semibold font-mono group-hover:text-indigo-400 transition-colors">
-          Scroll
-        </span>
-        <div className="w-4 h-7 rounded-full border border-[var(--border-subtle)] flex items-start justify-center p-1 group-hover:border-indigo-500/50 transition-colors">
-          <div className="w-1 h-2 bg-indigo-500 rounded-full animate-bounce" />
         </div>
       </div>
     </section>

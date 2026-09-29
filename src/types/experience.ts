@@ -1,3 +1,10 @@
+export interface LiveProductLink {
+  name: string;
+  url: string;
+  category?: string;
+  description?: string;
+}
+
 export interface ExperienceEntry {
   id: string;
   role: string;
@@ -9,4 +16,5 @@ export interface ExperienceEntry {
   description?: string;
   bulletPoints: string[];
   techTags?: string[];
+  liveProducts?: LiveProductLink[];
 }

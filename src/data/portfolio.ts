@@ -10,9 +10,9 @@ export const personalInfo = {
   initials: 'AKS',
   title: 'Frontend Developer & MERN Stack Developer',
   tagline: 'Frontend Developer crafting responsive, production-ready React applications — from SaaS dashboards to real-time MERN stack projects.',
-  shortBio: "I'm a Frontend Developer & MERN Stack Developer with hands-on experience building responsive, production-ready React & Next.js applications. Currently building live products at Hindustan Innovation Pvt. Ltd.",
+  shortBio: "I'm a Frontend Developer & MERN Stack Developer with hands-on experience building responsive, production-ready React & Next.js applications. Currently building live products at Hindustaan Innovations Private Limited.",
   detailedBio: [
-    'I am a Frontend Developer currently working at Hindustan Innovation Pvt. Ltd., where I build and maintain user-facing features across the company products — including a real-time chat application with live messaging and an internal Project OS platform for tracking work and project milestones.',
+    'I am a Frontend Developer currently working at Hindustaan Innovations Private Limited, where I build and maintain user-facing features across the company products — including a real-time chat application with live messaging and an internal Project OS platform for tracking work and project milestones.',
     'Outside of my professional role, I independently design and ship MERN stack projects end-to-end: secure JWT authentication systems, Razorpay payment integrations, booking engines, and RESTful APIs with MongoDB. I obsess over clean UI, solid engineering fundamentals, and shipping software that works seamlessly in production.'
   ],
   location: 'Raipur, Chhattisgarh, India (Open to Remote Globally)',
@@ -32,8 +32,6 @@ export const personalInfo = {
   stats: [
     { label: 'Live Projects Shipped', value: '6+', numeric: 6 },
     { label: 'B.Tech CSE CGPA', value: '7.3', numeric: 7.3 },
-    { label: 'Frontend Technologies', value: '12+', numeric: 12 },
-    { label: 'Lighthouse Performance', value: '98/100', numeric: 98 },
   ],
   principles: [
     {
@@ -363,19 +361,51 @@ export const experience: ExperienceEntry[] = [
   {
     id: 'exp-1',
     role: 'Frontend Developer',
-    company: 'Hindustan Innovation Pvt. Ltd.',
+    company: 'Hindustaan Innovations Private Limited',
     status: 'Current',
     current: true,
     location: 'Raipur, India',
     period: '2024 — Present',
-    description: 'Building and maintaining responsive user-facing features across multiple company products and client platforms.',
+    description: 'Architecting, building, and deploying responsive user-facing web applications, on-demand platforms, and real-time messaging ecosystems.',
     bulletPoints: [
-      'Building and maintaining user-facing features across core company products with React, Next.js, and TypeScript',
-      'Built a real-time chat application with live messaging functionality, room presence, and WebSocket connectivity',
-      'Actively developing "Project OS" — an internal web platform for monitoring developer work, task allocation, and project velocity',
-      'Designed and shipped the food delivery landing page and rider app portfolio showcase'
+      'Engineered and launched Bhukkadh — on-demand food delivery & restaurant partner platform featuring responsive UI, app download funnel, and multi-tier onboarding',
+      'Built and shipped Ghumakkadh — mobility and ride booking platform connecting riders and drivers across bike, auto, and cab services in India',
+      'Developed Miracal & Miracal Business — real-time chat and communication suites powered by WebSockets, room presence, and instant messaging architecture',
+      'Actively developing "Project OS" — internal web platform for monitoring developer velocity, task allocation, and production release tracking'
     ],
-    techTags: ['React.js', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Socket.IO', 'REST APIs', 'Vite']
+    techTags: ['React.js', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Socket.IO', 'REST APIs', 'Vite'],
+    liveProducts: [
+      {
+        name: 'Bhukkadh',
+        url: 'https://bhukkadh.hindustaan.in/',
+        category: 'Food Delivery Platform',
+        description: 'Online food delivery & restaurant ordering platform'
+      },
+      {
+        name: 'Ghumakkadh',
+        url: 'https://ghumakkadh.hindustaan.in/',
+        category: 'Rides & Mobility Platform',
+        description: 'On-demand bike, auto & cab ride booking platform'
+      },
+      {
+        name: 'Miracal',
+        url: 'https://miracal.hindustaan.tech/',
+        category: 'Real-Time Chat App',
+        description: 'Instant messaging & WebSocket communication platform'
+      },
+      {
+        name: 'Miracal Web App',
+        url: 'https://chat.hindustaan.tech/signin',
+        category: 'Live Chat App & Portal',
+        description: 'Real-time web chat client with QR code & phone login'
+      },
+      {
+        name: 'Miracal Business',
+        url: 'https://miracalbussiness.hindustaan.tech/',
+        category: 'Enterprise Communications',
+        description: 'Business communication & team messaging solution'
+      }
+    ]
   },
   {
     id: 'exp-2',
@@ -427,5 +457,4 @@ export const navLinks = [
   { label: 'Skills', href: '#skills' },
   { label: 'Projects', href: '#projects' },
   { label: 'Experience', href: '#experience' },
-  { label: 'Contact', href: '#contact' },
 ];

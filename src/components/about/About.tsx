@@ -4,13 +4,15 @@ import React, { useRef } from 'react';
 import { personalInfo } from '@/data/portfolio';
 import { GlassCard } from '@/components/ui/GlassCard';
 import { Badge } from '@/components/ui/Badge';
-import { MapPin, Clock, Award, Zap, Code, ShieldCheck } from 'lucide-react';
+import { MapPin, Award, Zap, Code, ShieldCheck, FileDown, Eye } from 'lucide-react';
 import { useGsapContext } from '@/hooks/useGsapContext';
 import { gsap } from '@/lib/gsap';
+import { useResume } from '@/context/ResumeContext';
 
 export function About() {
   const containerRef = useRef<HTMLElement>(null);
   const visualRef = useRef<HTMLDivElement>(null);
+  const { openResume } = useResume();
 
   useGsapContext(
     () => {
@@ -134,21 +136,17 @@ export function About() {
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-[var(--text-muted)] flex items-center gap-1.5">
-                  <Clock className="w-3.5 h-3.5 text-cyan-700 dark:text-cyan-400" /> Timezone
-                </span>
-                <span className="text-[var(--text-primary)] font-semibold">{personalInfo.timezone}</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-[var(--text-muted)] flex items-center gap-1.5">
                   <Award className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400" /> Education
                 </span>
                 <span className="text-[var(--text-primary)] font-semibold">B.Tech CSE (CGPA 7.3)</span>
               </div>
-              <div className="flex items-center justify-between">
-                <span className="text-[var(--text-muted)] flex items-center gap-1.5">
+              <div className="flex items-start justify-between gap-2">
+                <span className="text-[var(--text-muted)] flex items-center gap-1.5 shrink-0">
                   <Zap className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" /> Current Role
                 </span>
-                <span className="text-[var(--text-primary)] font-semibold">Hindustan Innovation</span>
+                <span className="text-[var(--text-primary)] font-semibold text-right">
+                  Frontend Developer at Hindustaan Innovations Private Limited
+                </span>
               </div>
             </div>
 
@@ -191,6 +189,25 @@ export function About() {
               {paragraph}
             </p>
           ))}
+
+          <div className="pt-2 flex flex-wrap items-center gap-3">
+            <button
+              type="button"
+              onClick={openResume}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white font-semibold text-xs sm:text-sm shadow-md shadow-indigo-500/25 transition-all duration-200 hover:scale-102 cursor-pointer"
+            >
+              <Eye className="w-4 h-4" />
+              <span>View Resume in Portfolio</span>
+            </button>
+            <a
+              href="/resume.pdf"
+              download="Ayush_Kumar_Shinde_Resume.pdf"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 hover:text-white font-semibold text-xs sm:text-sm transition-all duration-200 hover:scale-102 cursor-pointer"
+            >
+              <FileDown className="w-4 h-4 text-indigo-400" />
+              <span>Download PDF</span>
+            </a>
+          </div>
         </div>
       </div>
 
