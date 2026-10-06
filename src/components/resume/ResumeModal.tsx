@@ -38,7 +38,7 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
       {/* Main Modal Window */}
       <div
         data-lenis-prevent
-        className="relative w-full max-w-5xl h-[92vh] sm:h-[90vh] bg-[#0c101b] border border-white/10 rounded-2xl sm:rounded-3xl shadow-2xl shadow-indigo-500/10 flex flex-col overflow-hidden z-10"
+        className="relative w-full max-w-5xl h-[92vh] sm:h-[90vh] bg-[#0c101b] border border-white/10 rounded-2xl sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden z-10"
       >
         {/* Header Bar */}
         <div className="flex flex-wrap items-center justify-between gap-3 px-4 sm:px-6 py-3.5 border-b border-white/10 bg-[#090d16]/90 backdrop-blur-lg shrink-0">
@@ -66,7 +66,7 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
               onClick={() => setActiveTab('pdf')}
               className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
                 activeTab === 'pdf'
-                  ? 'bg-indigo-600 text-white shadow-sm'
+                  ? 'bg-white text-slate-950 font-semibold shadow-xs'
                   : 'text-slate-400 hover:text-white'
               }`}
             >
@@ -77,7 +77,7 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
               onClick={() => setActiveTab('interactive')}
               className={`px-3 py-1.5 rounded-lg transition-all cursor-pointer ${
                 activeTab === 'interactive'
-                  ? 'bg-indigo-600 text-white shadow-sm'
+                  ? 'bg-white text-slate-950 font-semibold shadow-xs'
                   : 'text-slate-400 hover:text-white'
               }`}
             >
@@ -90,7 +90,7 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
             <a
               href="/resume.pdf"
               download="Ayush_Kumar_Shinde_Resume.pdf"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white text-xs font-semibold shadow-md shadow-indigo-500/20 transition-all cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white hover:bg-slate-200 border border-white text-slate-950 text-xs font-semibold transition-all cursor-pointer"
               title="Download Resume PDF"
             >
               <FileDown className="w-3.5 h-3.5" />
@@ -137,7 +137,7 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
                   href="/resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-2.5 py-1 rounded-lg bg-indigo-600 text-white font-semibold text-xs"
+                  className="px-2.5 py-1 rounded-lg bg-white hover:bg-slate-200 text-slate-950 font-semibold text-xs border border-white"
                 >
                   Open Fullscreen
                 </a>
@@ -357,7 +357,7 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
               </section>
 
               {/* Bottom Quick Download Banner */}
-              <div className="p-6 rounded-2xl bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-cyan-500/10 border border-indigo-500/30 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left mb-8">
+              <div className="p-6 rounded-2xl bg-[#0e121e] border border-indigo-500/30 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left mb-8">
                 <div>
                   <h4 className="font-bold text-white text-base">Want a copy for review?</h4>
                   <p className="text-xs text-slate-400">Download the official print-ready PDF resume file.</p>
@@ -365,7 +365,7 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
                 <a
                   href="/resume.pdf"
                   download="Ayush_Kumar_Shinde_Resume.pdf"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white font-semibold text-xs sm:text-sm shadow-lg shadow-indigo-500/25 transition-all cursor-pointer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white hover:bg-slate-200 border border-white text-slate-950 font-semibold text-xs sm:text-sm transition-all cursor-pointer"
                 >
                   <FileDown className="w-4 h-4" />
                   <span>Download PDF</span>

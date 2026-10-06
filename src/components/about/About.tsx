@@ -97,7 +97,7 @@ export function About() {
         </Badge>
         <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-[var(--text-primary)]">
           Architecting systems with{' '}
-          <span className="bg-gradient-to-r from-indigo-600 to-cyan-600 dark:from-indigo-400 dark:to-cyan-400 bg-clip-text text-transparent">
+          <span className="text-indigo-400">
             precision and soul.
           </span>
         </h2>
@@ -107,18 +107,13 @@ export function About() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-20">
         {/* Left: Stylized Identity Terminal / Visual Card */}
         <div ref={visualRef} className="lg:col-span-5 w-full">
-          <GlassCard className="relative overflow-hidden p-6 sm:p-8 border-[var(--border-subtle)] shadow-2xl">
-            {/* Ambient Backlight */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-indigo-500/20 via-cyan-500/10 to-transparent blur-3xl pointer-events-none" />
-
+          <GlassCard className="relative overflow-hidden p-6 sm:p-8 border-[var(--border-subtle)]">
             {/* Profile Avatar / Monogram Frame */}
             <div className="flex items-center gap-4 mb-6">
-              <div className="relative flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-500 to-cyan-500 p-0.5 shadow-xl shadow-indigo-500/25">
-                <div className="w-full h-full rounded-[14px] bg-[#090b10] flex items-center justify-center">
-                  <span className="font-mono font-black text-xl tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 to-cyan-300">
-                    {personalInfo.initials}
-                  </span>
-                </div>
+              <div className="relative flex items-center justify-center w-16 h-16 rounded-2xl bg-[#090b10] border border-indigo-500/40">
+                <span className="font-mono font-black text-xl tracking-tight text-indigo-400">
+                  {personalInfo.initials}
+                </span>
               </div>
               <div>
                 <h3 className="font-bold text-lg text-[var(--text-primary)]">{personalInfo.name}</h3>
@@ -194,9 +189,9 @@ export function About() {
             <button
               type="button"
               onClick={openResume}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white font-semibold text-xs sm:text-sm shadow-md shadow-indigo-500/25 transition-all duration-200 hover:scale-102 cursor-pointer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white hover:bg-slate-200 border border-white text-slate-950 font-semibold text-xs sm:text-sm transition-all duration-200 hover:scale-102 cursor-pointer"
             >
-              <Eye className="w-4 h-4" />
+              <Eye className="w-4 h-4 text-slate-950" />
               <span>View Resume in Portfolio</span>
             </button>
             <a
@@ -204,7 +199,7 @@ export function About() {
               download="Ayush_Kumar_Shinde_Resume.pdf"
               className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 hover:text-white font-semibold text-xs sm:text-sm transition-all duration-200 hover:scale-102 cursor-pointer"
             >
-              <FileDown className="w-4 h-4 text-indigo-400" />
+              <FileDown className="w-4 h-4 text-slate-300" />
               <span>Download PDF</span>
             </a>
           </div>

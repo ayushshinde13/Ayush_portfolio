@@ -32,7 +32,7 @@ export default function Error({
         </div>
 
         <Button
-          variant="glow"
+          variant="primary"
           size="md"
           className="w-full"
           onClick={() => reset()}

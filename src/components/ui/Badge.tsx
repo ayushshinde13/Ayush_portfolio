@@ -17,7 +17,7 @@ export function Badge({
     default: 'bg-indigo-50 text-indigo-700 border border-indigo-200 dark:bg-indigo-500/10 dark:text-indigo-400 dark:border-indigo-500/20',
     outline: 'bg-transparent text-slate-700 border border-slate-300 dark:text-slate-400 dark:border-slate-700/80',
     pulse: 'bg-emerald-50 text-emerald-800 border border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/20',
-    glow: 'bg-indigo-50 text-indigo-700 border border-indigo-200 shadow-sm shadow-indigo-500/10 dark:bg-indigo-500/20 dark:text-indigo-300 dark:border-indigo-500/40 dark:shadow-indigo-500/30',
+    glow: 'bg-indigo-50 text-indigo-700 border border-indigo-200 dark:bg-indigo-500/20 dark:text-indigo-300 dark:border-indigo-500/40',
   };
 
   return (

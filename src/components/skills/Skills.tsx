@@ -7,7 +7,8 @@ import { Badge } from '@/components/ui/Badge';
 import { GlassCard } from '@/components/ui/GlassCard';
 import { useGsapContext } from '@/hooks/useGsapContext';
 import { gsap } from '@/lib/gsap';
-import { Cpu, CheckCircle2 } from 'lucide-react';
+import { CheckCircle2 } from 'lucide-react';
+import { SkillIconBadge } from './SkillIconBadge';
 
 export function Skills() {
   const [activeCategory, setActiveCategory] = useState<SkillCategory | 'All'>('All');
@@ -72,7 +73,7 @@ export function Skills() {
         </Badge>
         <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-[var(--text-primary)]">
           Technical Arsenal &amp;{' '}
-          <span className="bg-gradient-to-r from-indigo-600 to-cyan-600 dark:from-indigo-400 dark:to-cyan-400 bg-clip-text text-transparent">
+          <span className="text-indigo-400">
             Proficiencies
           </span>
         </h2>
@@ -91,8 +92,8 @@ export function Skills() {
               onClick={() => setActiveCategory(cat.id)}
               className={`px-4 py-2 text-xs sm:text-sm font-semibold rounded-full border transition-all cursor-pointer select-none ${
                 isActive
-                  ? 'bg-indigo-600 text-white border-indigo-400/50 shadow-md shadow-indigo-500/20'
-                  : 'bg-white dark:bg-[var(--bg-card)] text-slate-700 dark:text-[var(--text-secondary)] border-slate-200 dark:border-[var(--border-subtle)] hover:border-indigo-500/30 hover:text-[var(--text-primary)] shadow-xs'
+                  ? 'bg-white text-slate-950 border-white font-semibold shadow-xs'
+                  : 'bg-white/5 text-slate-300 border-white/10 hover:border-white/20 hover:text-white'
               }`}
             >
               {cat.label}
@@ -113,10 +114,8 @@ export function Skills() {
           >
             <div>
               <div className="flex items-start justify-between gap-2 mb-2">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-600 dark:text-indigo-400 group-hover:scale-110 transition-transform">
-                    <Cpu className="w-4 h-4" />
-                  </div>
+                <div className="flex items-center gap-2.5">
+                  <SkillIconBadge name={skill.name} size="sm" />
                   <h3 className="font-bold text-sm sm:text-base text-[var(--text-primary)]">
                     {skill.name}
                   </h3>

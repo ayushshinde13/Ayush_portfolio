@@ -106,9 +106,6 @@ export function AvatarStudio() {
       className="relative w-full py-16 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-10 xl:px-16 overflow-hidden bg-[#08090e]"
       aria-label="3D Character Studio"
     >
-      <div className="absolute top-1/4 left-1/3 w-[36rem] h-[36rem] rounded-full bg-indigo-500/10 blur-[160px] pointer-events-none" />
-      <div className="absolute bottom-10 right-10 w-[30rem] h-[30rem] rounded-full bg-cyan-500/10 blur-[150px] pointer-events-none" />
-
       <div className="relative z-10 max-w-7xl mx-auto w-full">
         {/* Header */}
         <div className="flex flex-col items-center text-center mb-10 sm:mb-14">
@@ -121,7 +118,7 @@ export function AvatarStudio() {
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white mb-4">
             Bespoke Agent{' '}
-            <span className="bg-gradient-to-r from-cyan-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">
+            <span className="text-cyan-400">
               3D Character Studio
             </span>
           </h2>
@@ -252,7 +249,7 @@ export function AvatarStudio() {
             )}
 
             {/* Viewport Center */}
-            <div className="relative flex-1 min-h-[460px] sm:min-h-[520px] lg:min-h-[580px] bg-radial from-[#12182b]/60 via-[#0a0d18] to-[#06070a] flex items-center justify-center">
+            <div className="relative flex-1 min-h-[460px] sm:min-h-[520px] lg:min-h-[580px] bg-[#0a0d18] flex items-center justify-center">
               {viewMode === 'renders' ? (
                 <div className="w-full h-full p-4 flex flex-col items-center justify-center relative">
                   <div className="relative w-full max-w-md h-[460px] sm:h-[500px] rounded-2xl overflow-hidden border border-white/15 shadow-2xl bg-black/50">
@@ -457,7 +454,7 @@ export function AvatarStudio() {
             </div>
 
             {/* 3D Export & Download Center */}
-            <div className="p-5 rounded-3xl bg-gradient-to-br from-[#101524] to-[#0c101a] border border-cyan-500/20 backdrop-blur-xl shadow-xl">
+            <div className="p-5 rounded-3xl bg-[#0c101a] border border-cyan-500/20 backdrop-blur-xl shadow-xl">
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-sm font-bold text-white flex items-center gap-2">
                   <Download className="w-4 h-4 text-cyan-400" />
@@ -473,7 +470,7 @@ export function AvatarStudio() {
               <div className="flex flex-col gap-2.5">
                 <button
                   onClick={() => exporters?.exportObj()}
-                  className="w-full flex items-center justify-between px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500/20 to-indigo-500/20 hover:from-cyan-500/30 hover:to-indigo-500/30 border border-cyan-400/40 text-cyan-200 text-xs font-semibold transition-all hover:scale-[1.01] shadow-lg shadow-cyan-950/40"
+                  className="w-full flex items-center justify-between px-4 py-2.5 rounded-xl bg-cyan-950/40 hover:bg-cyan-900/40 border border-cyan-400/40 text-cyan-200 text-xs font-semibold transition-all hover:scale-[1.01]"
                 >
                   <div className="flex items-center gap-2">
                     <FileCode className="w-4 h-4 text-cyan-400" />

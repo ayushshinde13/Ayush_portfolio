@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 
 interface OrbitIconData {
@@ -219,7 +219,7 @@ const INNER_ICONS: OrbitIconData[] = [
     color: '#00C4CC',
     glow: 'rgba(0, 196, 204, 0.75)',
     svg: (
-      <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-gradient-to-tr from-[#00C4CC] via-[#00b4d8] to-[#7D2AE8] flex items-center justify-center shadow-xs">
+      <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-[#00C4CC] flex items-center justify-center">
         <svg viewBox="0 0 24 24" className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-white">
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.89 13.91c-1.28 1.4-3.15 1.76-4.91 1.41-1.74-.35-3.08-1.71-3.61-3.37-.58-1.81-.31-3.83.69-5.41.97-1.53 2.59-2.52 4.41-2.57 1.44-.04 2.87.52 3.84 1.57.38.41.34 1.05-.07 1.43-.4.37-1.02.35-1.41-.07-.64-.69-1.58-1.05-2.53-1.02-1.26.04-2.38.74-3.04 1.82-.71 1.15-.89 2.62-.48 3.92.38 1.19 1.34 2.15 2.56 2.39 1.25.25 2.58-.02 3.52-1.05.38-.41 1.02-.45 1.43-.07.41.39.44 1.03.07 1.44z" />
         </svg>
@@ -230,6 +230,48 @@ const INNER_ICONS: OrbitIconData[] = [
 
 export function ProtectorOrbit() {
   const [activeTooltip, setActiveTooltip] = useState<string | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState<number | null>(null);
+
+  // Dynamic responsive scale observer for mobile and tablet screens
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const updateScale = () => {
+      const windowWidth = typeof window !== 'undefined' ? window.innerWidth : 1200;
+
+      // 1. Desktop screens (>= 1024px): Strictly keep full size without any modifications
+      if (windowWidth >= 1024) {
+        setScale(1);
+        return;
+      }
+
+      // 2. Tablet screens (640px to 1023px): Clean comfortable scale (~0.90 - 0.95)
+      if (windowWidth >= 640) {
+        const tabletScale = Math.min(0.95, Math.max(0.88, (windowWidth - 40) / 720));
+        setScale(tabletScale);
+        return;
+      }
+
+      // 3. Mobile screens (< 640px): Reduced slightly (~0.72 - 0.82) so outer icons never clip or touch edges
+      const mobileScale = Math.min(0.82, Math.max(0.68, (windowWidth - 24) / 490));
+      setScale(mobileScale);
+    };
+
+    updateScale();
+    const observer = new ResizeObserver(() => updateScale());
+    observer.observe(el);
+    if (el.parentElement) {
+      observer.observe(el.parentElement);
+    }
+    window.addEventListener('resize', updateScale);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('resize', updateScale);
+    };
+  }, []);
 
   // Geometric radii in pixels for outer and inner orbit tracks (scaled for larger badges)
   const CENTER = 260;
@@ -238,27 +280,25 @@ export function ProtectorOrbit() {
 
   return (
     <div
-      className="relative w-[390px] h-[390px] sm:w-[470px] sm:h-[470px] xl:w-[520px] xl:h-[520px] flex items-center justify-center select-none"
+      ref={containerRef}
+      className="relative w-full flex items-center justify-center select-none py-2 mx-auto overflow-visible"
       aria-label="Interactive Protractor Tech Radar"
     >
-      {/* Background Ambient Radiance */}
-      <div className="absolute inset-0 bg-radial from-cyan-500/18 via-indigo-600/12 to-transparent blur-3xl pointer-events-none rounded-full" />
-
+      {/* Responsive Bounding Box: Full 520px on PC (lg:), comfortable fit on tablet (sm:) and mobile */}
+      <div
+        className="relative flex items-center justify-center shrink-0 w-[360px] min-[390px]:w-[400px] sm:w-[480px] lg:w-[520px] h-[360px] min-[390px]:h-[400px] sm:h-[480px] lg:h-[520px]"
+        style={scale !== null ? { width: `${520 * scale}px`, height: `${520 * scale}px` } : undefined}
+      >
+        {/* Core Stage: Full scale-100 on PC, comfortably scaled on mobile and tablet */}
+        <div
+          className="w-[520px] h-[520px] origin-center shrink-0 absolute flex items-center justify-center scale-[0.70] min-[390px]:scale-[0.77] sm:scale-[0.92] lg:scale-100"
+          style={scale !== null ? { transform: `scale(${scale})` } : undefined}
+        >
       {/* SVG Protractor (प्रोटेक्टर) Geometry: Degree ticks, angle rays, concentric rings */}
       <svg
         viewBox="0 0 520 520"
         className="absolute inset-0 w-full h-full pointer-events-none"
       >
-        <defs>
-          <radialGradient id="protractorAura" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#818cf8" stopOpacity="0.14" />
-            <stop offset="60%" stopColor="#06b6d4" stopOpacity="0.07" />
-            <stop offset="100%" stopColor="#000000" stopOpacity="0" />
-          </radialGradient>
-        </defs>
-
-        <circle cx={CENTER} cy={CENTER} r="255" fill="url(#protractorAura)" />
-
         {/* Outer protractor boundary track */}
         <circle
           cx={CENTER}
@@ -324,8 +364,8 @@ export function ProtectorOrbit() {
         <line x1="36" y1={CENTER} x2="484" y2={CENTER} stroke="#38bdf8" strokeWidth="0.9" strokeDasharray="4 8" strokeOpacity="0.22" />
       </svg>
 
-      {/* Central Hub: Crisp Developer Workspace / Laptop with glowing aura */}
-      <div className="relative z-10 w-28 h-28 sm:w-32 sm:h-32 xl:w-34 xl:h-34 rounded-full p-1.5 bg-gradient-to-tr from-cyan-500/40 via-indigo-500/35 to-purple-500/40 border border-white/25 shadow-[0_0_35px_rgba(56,189,248,0.4)] flex items-center justify-center overflow-hidden backdrop-blur-md">
+      {/* Central Hub: Developer Workspace */}
+      <div className="relative z-10 w-28 h-28 sm:w-32 sm:h-32 xl:w-34 xl:h-34 rounded-full p-1 bg-[#13192b] border border-white/20 flex items-center justify-center overflow-hidden">
         <div className="relative w-full h-full rounded-full overflow-hidden bg-[#0a0d16] flex items-center justify-center">
           <Image
             src="/images/projects/Background.png"
@@ -334,8 +374,6 @@ export function ProtectorOrbit() {
             sizes="160px"
             className="object-cover object-center filter brightness-110 contrast-110 scale-125"
           />
-          {/* Subtle neon core overlay badge */}
-          <div className="absolute inset-0 bg-radial from-transparent via-[#08090d]/30 to-[#08090d]/80 pointer-events-none" />
           <div className="absolute bottom-1 px-2.5 py-0.5 rounded-full bg-black/80 border border-cyan-400/50 text-[9px] font-mono font-bold text-cyan-300 tracking-wider">
             AKS.CORE
           </div>
@@ -363,17 +401,14 @@ export function ProtectorOrbit() {
               {/* Counter-rotation to keep icon upright */}
               <div className="animate-orbit-outer-icon relative group">
                 <div
-                  className="w-12 h-12 sm:w-14 sm:h-14 xl:w-[60px] xl:h-[60px] rounded-full bg-gradient-to-b from-[#13192b]/95 to-[#090d18]/95 border-2 border-white/20 backdrop-blur-2xl flex items-center justify-center shadow-xl transition-all duration-300 hover:scale-125 hover:border-cyan-400 cursor-pointer"
-                  style={{
-                    boxShadow: `0 0 20px ${icon.glow}`,
-                  }}
+                  className="w-12 h-12 sm:w-14 sm:h-14 xl:w-[60px] xl:h-[60px] rounded-full bg-[#13192b] border border-white/20 flex items-center justify-center transition-all duration-300 hover:scale-125 hover:border-cyan-400 cursor-pointer"
                 >
                   {icon.svg}
                 </div>
 
                 {/* Floating Tooltip */}
                 {activeTooltip === icon.name && (
-                  <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1 rounded-lg bg-[#0a0f1d] border border-cyan-400/60 text-xs font-mono text-cyan-200 whitespace-nowrap shadow-2xl shadow-black z-50 animate-in fade-in zoom-in-95 duration-150">
+                  <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1 rounded-lg bg-[#0a0f1d] border border-cyan-400/60 text-xs font-mono text-cyan-200 whitespace-nowrap z-50 animate-in fade-in zoom-in-95 duration-150">
                     <span className="font-bold">{icon.name}</span>
                     <span className="text-[10px] text-slate-400 block">{icon.category}</span>
                   </div>
@@ -405,17 +440,14 @@ export function ProtectorOrbit() {
               {/* Counter-rotation to keep icon upright */}
               <div className="animate-orbit-inner-icon relative group">
                 <div
-                  className="w-10 h-10 sm:w-11 sm:h-11 xl:w-12 xl:h-12 rounded-full bg-gradient-to-b from-[#13192b]/95 to-[#090d18]/95 border-2 border-white/20 backdrop-blur-2xl flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-125 hover:border-indigo-400 cursor-pointer"
-                  style={{
-                    boxShadow: `0 0 16px ${icon.glow}`,
-                  }}
+                  className="w-10 h-10 sm:w-11 sm:h-11 xl:w-12 xl:h-12 rounded-full bg-[#13192b] border border-white/20 flex items-center justify-center transition-all duration-300 hover:scale-125 hover:border-indigo-400 cursor-pointer"
                 >
                   {icon.svg}
                 </div>
 
                 {/* Floating Tooltip */}
                 {activeTooltip === icon.name && (
-                  <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1 rounded-lg bg-[#0a0f1d] border border-indigo-400/60 text-xs font-mono text-indigo-200 whitespace-nowrap shadow-2xl shadow-black z-50 animate-in fade-in zoom-in-95 duration-150">
+                  <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1 rounded-lg bg-[#0a0f1d] border border-indigo-400/60 text-xs font-mono text-indigo-200 whitespace-nowrap z-50 animate-in fade-in zoom-in-95 duration-150">
                     <span className="font-bold">{icon.name}</span>
                     <span className="text-[10px] text-slate-400 block">{icon.category}</span>
                   </div>
@@ -424,6 +456,8 @@ export function ProtectorOrbit() {
             </div>
           );
         })}
+      </div>
+        </div>
       </div>
     </div>
   );

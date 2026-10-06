@@ -29,8 +29,6 @@ export default async function Image({ params }: { params: Promise<{ slug: string
           justifyContent: 'space-between',
           padding: '60px 80px',
           backgroundColor: '#08090D',
-          backgroundImage:
-            'radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.25) 0%, transparent 50%), radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.2) 0%, transparent 50%)',
           color: '#FFFFFF',
           fontFamily: 'system-ui, -apple-system, sans-serif',
         }}

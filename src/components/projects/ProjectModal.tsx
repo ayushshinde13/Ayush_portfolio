@@ -66,9 +66,8 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
             alt={project.title}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-secondary)] via-transparent to-black/20" />
           <div className="absolute bottom-4 left-6">
-            <Badge variant={project.category === 'frontend' ? 'glow' : 'pulse'} className="mb-2">
+            <Badge variant={project.category === 'frontend' ? 'default' : 'pulse'} className="mb-2">
               <span>{project.categoryLabel || (project.category === 'frontend' ? 'Frontend Craft' : 'MERN Stack Projects')}</span>
             </Badge>
             <h3 id="modal-project-title" className="text-2xl sm:text-3xl font-extrabold text-white">
@@ -163,7 +162,7 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
           <Link
             href={`/projects/${project.slug}`}
             onClick={onClose}
-            className="inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white shadow-md shadow-indigo-500/25 transition-all"
+            className="inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold rounded-xl bg-white hover:bg-slate-200 border border-white text-slate-950 transition-all cursor-pointer"
           >
             <span>Read Full Case Study</span>
             <ArrowRight className="w-3.5 h-3.5" />

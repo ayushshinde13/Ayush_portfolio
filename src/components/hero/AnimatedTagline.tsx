@@ -134,14 +134,14 @@ export function AnimatedTagline({ align = 'left', className = '' }: AnimatedTagl
       <div
         className={`relative z-10 flex items-center ${
           align === 'left' ? 'justify-start' : 'justify-center'
-        } flex-wrap font-black tracking-tight leading-[1.1] text-[clamp(2.2rem,4.5vw,3.6rem)] drop-shadow-2xl`}
+        } flex-wrap font-black tracking-tight leading-[1.1] text-[clamp(2.2rem,4.5vw,3.6rem)]`}
       >
-        {/* "IM" group with animated iridescent aurora shimmer */}
-        <span className="tagline-im-group inline-flex items-center text-[#818cf8] drop-shadow-md">
+        {/* "IM" group with solid indigo color */}
+        <span className="tagline-im-group inline-flex items-center text-[#818cf8]">
           <span className="tagline-char inline-block will-change-transform">I</span>
           <span
             ref={apostropheRef}
-            className="inline-block overflow-hidden text-cyan-300 will-change-transform drop-shadow-[0_0_12px_rgba(34,211,238,0.8)]"
+            className="inline-block overflow-hidden text-cyan-300 will-change-transform"
             style={{
               width: prefersReducedMotion ? 'auto' : 0,
               opacity: prefersReducedMotion ? 1 : 0,
@@ -160,8 +160,8 @@ export function AnimatedTagline({ align = 'left', className = '' }: AnimatedTagl
           aria-hidden="true"
         />
 
-        {/* "POSSIBLE" group with vivid cyan & teal shimmer */}
-        <span className="tagline-possible-group inline-flex items-center text-[#22d3ee] drop-shadow-md">
+        {/* "POSSIBLE" group with vivid cyan color */}
+        <span className="tagline-possible-group inline-flex items-center text-[#22d3ee]">
           {'POSSIBLE'.split('').map((char, index) => (
             <span
               key={index}
@@ -180,12 +180,12 @@ export function AnimatedTagline({ align = 'left', className = '' }: AnimatedTagl
           align === 'left' ? 'text-left' : 'text-center'
         }`}
       >
-        <p className="tagline-subhead-line text-slate-100 font-semibold drop-shadow-md">
+        <p className="tagline-subhead-line text-slate-100 font-semibold">
           Every &lsquo;<span className="text-indigo-400">impossible</span>&rsquo; is hiding a &lsquo;
-          <span className="text-cyan-400 font-bold drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]">possible</span>
+          <span className="text-cyan-400 font-bold">possible</span>
           &rsquo; &mdash; waiting on belief.
         </p>
-        <p className="tagline-subhead-line text-slate-300 font-normal drop-shadow-sm">
+        <p className="tagline-subhead-line text-slate-300 font-normal">
           Believe in yourself first, and let the world follow.
         </p>
       </div>

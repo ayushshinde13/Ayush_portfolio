@@ -83,11 +83,10 @@ export function Preloader({ onComplete }: { onComplete?: () => void }) {
       aria-label="Loading portfolio"
     >
       <div className="relative flex flex-col items-center gap-6 max-w-sm w-full px-8">
-        {/* Glowing Monogram Logo */}
+        {/* Monogram Logo */}
         <div ref={logoRef} className="relative flex items-center justify-center">
-          <div className="absolute -inset-4 rounded-3xl bg-indigo-500/20 blur-xl animate-pulse" />
-          <div className="relative flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-indigo-500/20 via-purple-500/10 to-transparent border border-indigo-500/40 backdrop-blur-md shadow-2xl shadow-indigo-500/30">
-            <span className="font-extrabold text-3xl tracking-tight bg-gradient-to-r from-white via-indigo-200 to-cyan-300 bg-clip-text text-transparent">
+          <div className="relative flex items-center justify-center w-20 h-20 rounded-2xl bg-[#13192b] border border-indigo-500/40">
+            <span className="font-extrabold text-3xl tracking-tight text-white">
               {personalInfo.initials}
             </span>
           </div>
@@ -107,7 +106,7 @@ export function Preloader({ onComplete }: { onComplete?: () => void }) {
         <div className="w-full h-1 bg-slate-800/80 rounded-full overflow-hidden border border-slate-700/50">
           <div
             ref={barRef}
-            className="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-400 transition-all duration-75"
+            className="h-full bg-indigo-500 transition-all duration-75"
             style={{ width: '0%' }}
           />
         </div>

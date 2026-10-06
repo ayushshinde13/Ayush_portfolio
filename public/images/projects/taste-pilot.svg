@@ -1,38 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
-  <defs>
-    <linearGradient id="bgTP" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#190e0b" />
-      <stop offset="100%" stop-color="#2a1610" />
-    </linearGradient>
-    <linearGradient id="orangeFlame" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#F97316" />
-      <stop offset="100%" stop-color="#FB923C" />
-    </linearGradient>
-    <filter id="glowTP" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="8" result="blur" />
-      <feComposite in="SourceGraphic" in2="blur" operator="over" />
-    </filter>
-  </defs>
-  <rect width="800" height="500" rx="16" fill="url(#bgTP)" />
+  <!-- Flat Solid Background -->
+  <rect width="800" height="500" rx="16" fill="#0c101b" />
 
   <!-- Live Delivery Map Tracker Route -->
   <path d="M 120 280 Q 280 140 420 220 T 680 180" fill="none" stroke="rgba(249,115,22,0.2)" stroke-width="6" />
-  <path d="M 120 280 Q 280 140 420 220 T 680 180" fill="none" stroke="url(#orangeFlame)" stroke-width="3" stroke-dasharray="12,8" filter="url(#glowTP)" />
+  <path d="M 120 280 Q 280 140 420 220 T 680 180" fill="none" stroke="#F97316" stroke-width="2.5" stroke-dasharray="10,6" />
 
   <!-- Delivery Pin Hubs -->
-  <circle cx="120" cy="280" r="14" fill="#2a1610" stroke="#F97316" stroke-width="2.5" />
+  <circle cx="120" cy="280" r="14" fill="#131a2a" stroke="#F97316" stroke-width="2" />
   <circle cx="120" cy="280" r="5" fill="#F97316" />
 
-  <circle cx="420" cy="220" r="12" fill="#2a1610" stroke="#10B981" stroke-width="2" />
+  <circle cx="420" cy="220" r="12" fill="#131a2a" stroke="#10B981" stroke-width="2" />
   <circle cx="420" cy="220" r="4" fill="#10B981" />
 
   <!-- Active Rider Marker -->
-  <circle cx="680" cy="180" r="18" fill="#F97316" filter="url(#glowTP)" />
+  <circle cx="680" cy="180" r="16" fill="#F97316" />
   <polygon points="674,172 690,180 674,188" fill="#FFFFFF" />
 
   <!-- Realtime Order Floating Card -->
   <g transform="translate(260, 90)">
-    <rect width="280" height="110" rx="16" fill="rgba(26,16,13,0.9)" stroke="#F97316" stroke-width="1.5" filter="url(#glowTP)" />
+    <rect width="280" height="110" rx="14" fill="#131a2a" stroke="#F97316" stroke-width="1.5" />
     <circle cx="30" cy="35" r="14" fill="rgba(249,115,22,0.15)" />
     <text x="30" y="40" fill="#F97316" font-family="system-ui, sans-serif" font-size="14" font-weight="700" text-anchor="middle">&#9889;</text>
     <text x="56" y="32" fill="#F8FAFC" font-family="system-ui, sans-serif" font-size="14" font-weight="700">Order Dispatched</text>

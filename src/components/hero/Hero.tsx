@@ -34,6 +34,7 @@ export function Hero() {
     const ySetter = gsap.quickTo('.hero-bg-interactive', 'y', { duration: 0.6, ease: 'power2.out' });
 
     const handleMouseMove = (e: MouseEvent) => {
+      if (!window.matchMedia('(pointer: fine)').matches) return;
       const rect = heroEl.getBoundingClientRect();
       const xPercent = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
       const yPercent = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
@@ -115,31 +116,6 @@ export function Hero() {
           scrub: 1.2,
         },
       });
-
-      // Parallax effect on floating orbs
-      gsap.to('.hero-glow-orb-1', {
-        yPercent: -40,
-        xPercent: 20,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: 1.5,
-        },
-      });
-
-      gsap.to('.hero-glow-orb-2', {
-        yPercent: -60,
-        xPercent: -20,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: 2,
-        },
-      });
     },
     containerRef
   );
@@ -151,18 +127,6 @@ export function Hero() {
       className="relative min-h-[auto] lg:min-h-screen w-full flex flex-col justify-center pt-20 sm:pt-24 lg:pt-28 pb-8 sm:pb-12 px-4 sm:px-6 lg:px-10 xl:px-16 overflow-hidden bg-[#08090d]"
       aria-label="Introduction"
     >
-      {/* Background Parallax Ambient Glow Orbs */}
-      <div className="hero-glow-orb-1 absolute top-1/4 left-10 w-96 h-96 rounded-full bg-indigo-500/10 blur-[130px] pointer-events-none" />
-      <div className="hero-glow-orb-2 absolute bottom-1/4 right-10 w-[28rem] h-[28rem] rounded-full bg-cyan-500/10 blur-[140px] pointer-events-none" />
-      <div className="absolute top-1/3 right-1/4 w-80 h-80 rounded-full bg-purple-500/10 blur-[130px] pointer-events-none" />
-
-      {/* Dynamic Ambient Light Sweep Flare */}
-      <div className="hero-light-sweep absolute -inset-1/2 bg-gradient-to-tr from-cyan-500/10 via-indigo-500/8 to-transparent blur-3xl pointer-events-none" />
-
-      {/* Top & Bottom seamless edge fades */}
-      <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-[#08090d] to-transparent pointer-events-none z-10" />
-      <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[#08090d] to-transparent pointer-events-none z-10" />
-
       {/* Main Hero 2-Column Grid: Left (Text & CTAs) | Right (Workspace PNG Artwork) */}
       <div className="relative z-10 max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-12 items-center">
         {/* LEFT COLUMN: Text, Tagline, CTAs, and Badges */}
@@ -180,14 +144,14 @@ export function Hero() {
             className="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-black tracking-tight leading-[1.12] mb-3.5 sm:mb-4 text-left"
           >
             <span className="block overflow-hidden pb-1.5 pt-1">
-              <span className="hero-word inline-block text-[var(--text-primary)] drop-shadow-md pb-1">Engineering</span>{' '}
-              <span className="hero-word inline-block bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-400 bg-clip-text text-transparent drop-shadow-md pb-1">
+              <span className="hero-word inline-block text-[var(--text-primary)] pb-1">Engineering</span>{' '}
+              <span className="hero-word inline-block text-indigo-400 pb-1">
                 Fluid
               </span>
             </span>
             <span className="block overflow-hidden pb-1.5 pt-1">
-              <span className="hero-word inline-block text-[var(--text-primary)] drop-shadow-md pb-1">Digital</span>{' '}
-              <span className="hero-word inline-block text-[var(--text-secondary)] drop-shadow-md pb-1">Realities.</span>
+              <span className="hero-word inline-block text-[var(--text-primary)] pb-1">Digital</span>{' '}
+              <span className="hero-word inline-block text-[var(--text-secondary)] pb-1">Realities.</span>
             </span>
           </h1>
 
@@ -229,7 +193,7 @@ export function Hero() {
             <div className="hero-cta-btn">
               <Button
                 size="md"
-                variant="glow"
+                variant="primary"
                 onClick={() => scrollTo('#projects')}
                 rightIcon={<ArrowUpRight className="w-4 h-4" />}
                 className="px-5 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-base"
@@ -242,7 +206,7 @@ export function Hero() {
                 size="md"
                 variant="secondary"
                 onClick={openResume}
-                rightIcon={<Eye className="w-4 h-4 text-indigo-400" />}
+                rightIcon={<Eye className="w-4 h-4 text-slate-300" />}
                 className="px-5 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-base cursor-pointer"
               >
                 View Resume
@@ -254,7 +218,7 @@ export function Hero() {
                 aria-label="Download Official Resume (PDF)"
                 className="p-2.5 sm:p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white transition-all cursor-pointer flex items-center justify-center hover:scale-105 active:scale-95"
               >
-                <FileDown className="w-4.5 h-4.5 text-indigo-400" />
+                <FileDown className="w-4.5 h-4.5 text-slate-300" />
               </a>
             </div>
           </div>
@@ -283,12 +247,6 @@ export function Hero() {
         {/* RIGHT COLUMN: Interactive Protractor (प्रोटेक्टर) Tech Orbit Animation */}
         <div className="lg:col-span-5 flex items-center justify-center relative w-full mt-6 lg:mt-0">
           <div className="hero-visual-card relative w-full flex items-center justify-center">
-            {/* Ambient Backlight Glow behind the visual */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/20 via-indigo-500/25 to-purple-600/20 rounded-full blur-[80px] -z-10 pointer-events-none transform scale-90" />
-
-            {/* Subtle decorative glow ring */}
-            <div className="absolute -inset-3 rounded-full bg-gradient-to-b from-indigo-500/10 via-cyan-500/5 to-transparent blur-xl pointer-events-none" />
-
             {/* Artwork Container with interactive mouse parallax & scroll parallax */}
             <div className="hero-bg-parallax relative flex items-center justify-center">
               <div className="hero-bg-interactive relative flex items-center justify-center">

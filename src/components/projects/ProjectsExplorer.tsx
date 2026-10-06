@@ -61,7 +61,7 @@ export function ProjectsExplorer() {
         </Badge>
         <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[var(--text-primary)]">
           Production Systems &amp;{' '}
-          <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-600 dark:from-indigo-400 dark:via-purple-400 dark:to-cyan-400 bg-clip-text text-transparent">
+          <span className="text-indigo-400">
             Frontend Craft.
           </span>
         </h1>
@@ -106,14 +106,14 @@ export function ProjectsExplorer() {
                 onClick={() => setActiveFilter(tab.id as FilterType)}
                 className={`flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-semibold rounded-full border transition-all cursor-pointer select-none ${
                   isActive
-                    ? 'bg-indigo-600 text-white border-indigo-400/50 shadow-md shadow-indigo-500/25 scale-102'
-                    : 'bg-white dark:bg-[var(--bg-card)] text-slate-700 dark:text-[var(--text-secondary)] border-slate-200 dark:border-[var(--border-subtle)] hover:border-indigo-500/30 hover:text-[var(--text-primary)] shadow-xs'
+                    ? 'bg-white text-slate-950 border-white font-semibold shadow-xs scale-102'
+                    : 'bg-white/5 text-slate-300 border-white/10 hover:border-white/20 hover:text-white'
                 }`}
               >
                 <span>{tab.label}</span>
                 <span
                   className={`text-[11px] px-1.5 py-0.2 rounded-full font-mono ${
-                    isActive ? 'bg-white/20 text-white' : 'bg-slate-200/80 text-slate-700 dark:bg-white/5 dark:text-[var(--text-muted)]'
+                    isActive ? 'bg-black/10 text-slate-950 font-bold' : 'bg-white/10 text-slate-300'
                   }`}
                 >
                   {tab.count}

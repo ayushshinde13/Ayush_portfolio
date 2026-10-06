@@ -65,18 +65,8 @@ export function ProjectCard({ project, onQuickView }: ProjectCardProps) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={handleMouseLeave}
       data-cursor="project"
-      className="project-card-wrapper relative rounded-2xl sm:rounded-3xl border border-[var(--border-subtle)] bg-[var(--bg-card)] overflow-hidden transition-all duration-300 hover:border-indigo-500/50 hover:shadow-2xl hover:shadow-indigo-500/10 flex flex-col group will-change-transform h-full"
+      className="project-card-wrapper relative rounded-2xl sm:rounded-3xl border border-[var(--border-subtle)] bg-[var(--bg-card)] overflow-hidden transition-all duration-300 hover:border-indigo-500/50 flex flex-col group will-change-transform h-full"
     >
-      {/* Dynamic Mouse Spotlight */}
-      {isHovered && (
-        <div
-          className="pointer-events-none absolute -inset-px transition-opacity duration-300 z-0"
-          style={{
-            background: `radial-gradient(400px circle at ${mousePos.x}px ${mousePos.y}px, rgba(99, 102, 241, 0.12), transparent 70%)`,
-          }}
-        />
-      )}
-
       {/* Visual Image Preview */}
       <div className="relative w-full h-48 sm:h-56 overflow-hidden bg-slate-950/60 border-b border-[var(--border-subtle)]">
         <img
@@ -85,12 +75,11 @@ export function ProjectCard({ project, onQuickView }: ProjectCardProps) {
           className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-card)] via-transparent to-transparent opacity-80" />
 
         {/* Floating Category Badge */}
         <div className="absolute top-3.5 left-3.5 z-10">
           <Badge
-            variant={project.category === 'frontend' ? 'glow' : 'pulse'}
+            variant={project.category === 'frontend' ? 'default' : 'pulse'}
             pulseColor={project.category === 'frontend' ? 'bg-indigo-400' : 'bg-emerald-400'}
           >
             <span>{project.categoryLabel}</span>
@@ -106,7 +95,7 @@ export function ProjectCard({ project, onQuickView }: ProjectCardProps) {
               e.stopPropagation();
               onQuickView(project);
             }}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/70 hover:bg-black/90 text-white text-xs font-semibold backdrop-blur-md border border-white/20 shadow-lg cursor-pointer transition-transform hover:scale-105"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/80 hover:bg-black text-white text-xs font-semibold border border-white/20 cursor-pointer transition-transform hover:scale-105"
             aria-label={`Quick view ${project.title}`}
           >
             <Eye className="w-3.5 h-3.5" />
@@ -160,7 +149,7 @@ export function ProjectCard({ project, onQuickView }: ProjectCardProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 dark:bg-indigo-500/10 dark:hover:bg-indigo-500/20 dark:text-indigo-400 dark:border-transparent font-semibold transition-colors"
+                className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white border border-white/15 font-semibold transition-colors"
                 aria-label={`View live demo of ${project.title}`}
               >
                 <ExternalLink className="w-3 h-3" />

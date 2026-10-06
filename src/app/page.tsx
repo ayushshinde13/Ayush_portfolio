@@ -8,10 +8,6 @@ import { Experience } from '@/components/experience/Experience';
 export default function HomePage() {
   return (
     <main className="relative flex flex-col gap-4 sm:gap-8 md:gap-16 overflow-hidden">
-      {/* Background ambient lighting effects */}
-      <div className="absolute top-[15%] left-[5%] w-[35rem] h-[35rem] rounded-full bg-indigo-500/10 blur-[150px] pointer-events-none" />
-      <div className="absolute top-[45%] right-[5%] w-[40rem] h-[40rem] rounded-full bg-cyan-500/8 blur-[160px] pointer-events-none" />
-      <div className="absolute top-[75%] left-[10%] w-[35rem] h-[35rem] rounded-full bg-purple-500/8 blur-[150px] pointer-events-none" />
 
       {/* 1. Hero Section */}
       <Hero />

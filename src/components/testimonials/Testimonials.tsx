@@ -56,7 +56,7 @@ export function Testimonials() {
         </Badge>
         <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-[var(--text-primary)]">
           Endorsements from{' '}
-          <span className="bg-gradient-to-r from-indigo-600 to-cyan-600 dark:from-indigo-400 dark:to-cyan-400 bg-clip-text text-transparent">
+          <span className="text-indigo-400">
             Collaborators
           </span>
         </h2>

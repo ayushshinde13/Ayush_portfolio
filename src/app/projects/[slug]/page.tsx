@@ -83,7 +83,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         {/* Project Hero Header */}
         <div className="space-y-4 mb-10">
           <div className="flex flex-wrap items-center gap-2">
-            <Badge variant={project.category === 'frontend' ? 'glow' : 'pulse'}>
+            <Badge variant={project.category === 'frontend' ? 'default' : 'pulse'}>
               <span>{project.categoryLabel || (project.category === 'frontend' ? 'Frontend Craft' : 'MERN Stack Projects')}</span>
             </Badge>
             <span className="text-xs font-mono text-[var(--text-muted)] bg-white/5 px-2.5 py-1 rounded-full border border-white/5">
@@ -106,7 +106,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                 href={project.links.live}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm shadow-lg shadow-indigo-500/25 transition-all"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white hover:bg-slate-200 border border-white text-slate-950 font-semibold text-sm transition-all"
               >
                 <span>Live Deployment</span>
                 <ExternalLink className="w-4 h-4" />

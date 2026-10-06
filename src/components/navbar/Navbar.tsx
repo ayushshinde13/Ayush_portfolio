@@ -62,7 +62,7 @@ export function Navbar() {
       {/* Scroll Progress Indicator */}
       <div className="fixed top-0 left-0 right-0 h-[3px] bg-transparent z-[100] pointer-events-none">
         <div
-          className="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-400 transition-all duration-75 ease-out"
+          className="h-full bg-indigo-500 transition-all duration-75 ease-out"
           style={{ width: `${scrollProgress}%` }}
         />
       </div>
@@ -86,8 +86,8 @@ export function Navbar() {
               className="flex items-center gap-2.5 group focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded-full"
               aria-label="Home"
             >
-              <div className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-indigo-500/20 to-cyan-500/20 border border-indigo-500/40 text-indigo-400 group-hover:scale-105 group-hover:border-indigo-400 transition-all duration-300 shadow-sm">
-                <span className="font-black text-xs sm:text-sm tracking-tight bg-gradient-to-r from-indigo-200 to-cyan-200 bg-clip-text text-transparent">
+              <div className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#13192b] border border-indigo-500/40 text-indigo-400 group-hover:scale-105 group-hover:border-indigo-400 transition-all duration-300">
+                <span className="font-black text-xs sm:text-sm tracking-tight text-indigo-300">
                   {personalInfo.initials}
                 </span>
               </div>
@@ -135,7 +135,7 @@ export function Navbar() {
               className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 hover:text-white transition-all shadow-xs cursor-pointer group"
               title="View Resume in Portfolio"
             >
-              <Eye className="w-3.5 h-3.5 text-indigo-400 group-hover:text-cyan-400 transition-colors" />
+              <Eye className="w-3.5 h-3.5 text-slate-300 group-hover:text-white transition-colors" />
               <span>Resume</span>
             </button>
 
@@ -164,7 +164,7 @@ export function Navbar() {
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link.href)}
                     className={`px-4 py-2.5 text-sm font-semibold rounded-xl transition-colors ${isActive
-                        ? 'bg-indigo-600 text-white'
+                        ? 'bg-white/10 text-white border border-white/15'
                         : 'text-slate-300 hover:text-white hover:bg-white/5'
                       }`}
                   >
@@ -180,9 +180,9 @@ export function Navbar() {
                     setMobileMenuOpen(false);
                     openResume();
                   }}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-indigo-600 text-white cursor-pointer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg bg-white hover:bg-slate-200 text-slate-950 border border-white cursor-pointer"
                 >
-                  <Eye className="w-3.5 h-3.5" />
+                  <Eye className="w-3.5 h-3.5 text-slate-950" />
                   <span>View Resume</span>
                 </button>
               </div>

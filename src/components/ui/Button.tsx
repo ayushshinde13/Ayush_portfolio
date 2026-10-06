@@ -47,15 +47,15 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     const variantStyles = {
       primary:
-        'bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-500/25 border border-indigo-400/30 hover:shadow-indigo-500/40 active:scale-[0.98]',
+        'bg-white hover:bg-slate-200 text-slate-950 font-semibold border border-white active:scale-[0.98]',
       secondary:
-        'bg-slate-800/80 hover:bg-slate-700/80 text-slate-100 border border-slate-700/60 shadow-md backdrop-blur-md active:scale-[0.98]',
+        'bg-white/5 hover:bg-white/10 text-slate-100 border border-white/10 active:scale-[0.98]',
       outline:
-        'bg-transparent hover:bg-indigo-500/10 text-slate-200 border border-slate-700 hover:border-indigo-500/50 active:scale-[0.98]',
+        'bg-transparent hover:bg-white/10 text-slate-200 border border-white/20 hover:border-white/40 active:scale-[0.98]',
       ghost:
-        'bg-transparent hover:bg-slate-800/40 text-slate-300 hover:text-white',
+        'bg-transparent hover:bg-white/5 text-slate-300 hover:text-white',
       glow:
-        'relative group text-white bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-500 hover:opacity-95 shadow-lg shadow-indigo-500/30 transition-all duration-300',
+        'bg-white hover:bg-slate-200 text-slate-950 font-semibold border border-white active:scale-[0.98]',
     };
 
     return (

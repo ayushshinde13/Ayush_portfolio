@@ -22,7 +22,7 @@ export default function NotFound() {
         </div>
 
         <Link href="/" className="inline-block w-full">
-          <Button variant="glow" size="md" className="w-full" leftIcon={<ArrowLeft className="w-4 h-4" />}>
+          <Button variant="primary" size="md" className="w-full" leftIcon={<ArrowLeft className="w-4 h-4" />}>
             Return to Safety
           </Button>
         </Link>

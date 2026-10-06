@@ -125,7 +125,7 @@ export function Contact() {
         </Badge>
         <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-[var(--text-primary)]">
           Let&apos;s build something{' '}
-          <span className="bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">
+          <span className="text-indigo-400">
             extraordinary.
           </span>
         </h2>
@@ -326,7 +326,7 @@ export function Contact() {
                 <Button
                   type="submit"
                   size="md"
-                  variant="glow"
+                  variant="primary"
                   isLoading={status === 'loading'}
                   className="w-full"
                   rightIcon={<Send className="w-4 h-4" />}

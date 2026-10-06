@@ -106,15 +106,14 @@ export function Experience() {
           }
         );
 
-        // Animate the timeline node glow pulse when reached
+        // Animate the timeline node pin when reached
         const pinNode = entry.querySelector('.timeline-node-pin');
         if (pinNode) {
           tl.fromTo(
             pinNode,
-            { scale: 0.6, boxShadow: '0 0 0px rgba(99, 102, 241, 0)' },
+            { scale: 0.8 },
             {
-              scale: 1.15,
-              boxShadow: '0 0 20px rgba(99, 102, 241, 0.8)',
+              scale: 1.1,
               duration: 0.4,
               ease: 'back.out(2)',
             },
@@ -144,7 +143,7 @@ export function Experience() {
         </Badge>
         <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-[var(--text-primary)]">
           Experience &amp;{' '}
-          <span className="bg-gradient-to-r from-indigo-600 to-cyan-600 dark:from-indigo-400 dark:to-cyan-400 bg-clip-text text-transparent">
+          <span className="text-indigo-400">
             Engineering Milestones
           </span>
         </h2>
@@ -161,10 +160,10 @@ export function Experience() {
         {/* Background Vertical Guide Track on the Left */}
         <div className="absolute left-4 sm:left-6 md:left-8 top-3 bottom-6 w-[2px] -translate-x-1/2 bg-[var(--border-subtle)] pointer-events-none" />
 
-        {/* Animated Glowing Progress Line */}
+        {/* Flat Progress Line */}
         <div
           ref={progressBarRef}
-          className="absolute left-4 sm:left-6 md:left-8 top-3 w-[2px] -translate-x-1/2 bg-gradient-to-b from-indigo-500 via-purple-500 to-cyan-400 pointer-events-none shadow-[0_0_12px_rgba(99,102,241,0.6)] z-0 rounded-full"
+          className="absolute left-4 sm:left-6 md:left-8 top-3 w-[2px] -translate-x-1/2 bg-indigo-500 pointer-events-none z-0 rounded-full"
           style={{ height: '0%' }}
         />
 
@@ -181,16 +180,13 @@ export function Experience() {
               >
                 {/* Timeline Pin Node on the vertical track */}
                 <div
-                  className="timeline-node-pin absolute left-4 sm:left-6 md:left-8 -translate-x-1/2 top-7 z-20 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[var(--bg-primary)] border-2 border-indigo-500 shadow-md shadow-indigo-500/40 cursor-default"
+                  className="timeline-node-pin absolute left-4 sm:left-6 md:left-8 -translate-x-1/2 top-7 z-20 flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[var(--bg-primary)] border-2 border-indigo-500 cursor-default"
                 >
-                  <div className="w-2.5 h-2.5 rounded-full bg-gradient-to-r from-indigo-400 to-cyan-400" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-indigo-400" />
                 </div>
 
                 {/* Content Card Layout - Wide Split Grid */}
                 <GlassCard className="p-6 sm:p-8 md:p-9 border-[var(--border-subtle)] hover:border-indigo-500/40 transition-all duration-300 shadow-xl group relative overflow-hidden">
-                  {/* Subtle ambient light aura */}
-                  <div className="absolute -top-24 -right-24 w-60 h-60 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none group-hover:bg-indigo-500/15 transition-all duration-500" />
-
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 relative z-10">
                     {/* Left Column (Metadata & Role Info): lg:col-span-5 */}
                     <div className="lg:col-span-5 flex flex-col justify-between space-y-5 lg:pr-6 lg:border-r border-[var(--border-subtle)]/70">
@@ -396,9 +392,9 @@ export function Experience() {
             <button
               type="button"
               onClick={openResume}
-              className="inline-flex items-center gap-2.5 px-6 py-3 rounded-2xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 text-white font-semibold text-sm shadow-xl shadow-indigo-500/25 transition-all duration-300 hover:scale-103 cursor-pointer group"
+              className="inline-flex items-center gap-2.5 px-6 py-3 rounded-2xl bg-white hover:bg-slate-200 border border-white text-slate-950 font-semibold text-sm transition-all duration-300 hover:scale-103 cursor-pointer group"
             >
-              <Eye className="w-4.5 h-4.5 group-hover:scale-110 transition-transform" />
+              <Eye className="w-4.5 h-4.5 group-hover:scale-110 transition-transform text-slate-950" />
               <span>View Resume in Portfolio</span>
             </button>
             <a
@@ -406,7 +402,7 @@ export function Experience() {
               download="Ayush_Kumar_Shinde_Resume.pdf"
               className="inline-flex items-center gap-2.5 px-5 py-3 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 hover:text-white font-semibold text-sm transition-all duration-300 hover:scale-103 cursor-pointer"
             >
-              <FileDown className="w-4.5 h-4.5 text-indigo-400" />
+              <FileDown className="w-4.5 h-4.5 text-slate-300" />
               <span>Download PDF</span>
             </a>
           </div>

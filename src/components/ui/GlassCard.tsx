@@ -33,24 +33,13 @@ export function GlassCard({
   return (
     <div
       ref={cardRef}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
       className={cn(
         'relative rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-card)] p-6 backdrop-blur-xl transition-all duration-300 overflow-hidden',
-        glowOnHover && 'hover:border-[var(--border-glow)] hover:shadow-xl hover:shadow-indigo-500/5',
+        glowOnHover && 'hover:border-indigo-500/30',
         className
       )}
       {...props}
     >
-      {spotlight && isHovered && (
-        <div
-          className="pointer-events-none absolute -inset-px transition-opacity duration-300 z-0"
-          style={{
-            background: `radial-gradient(400px circle at ${mousePos.x}px ${mousePos.y}px, ${spotlightColor}, transparent 70%)`,
-          }}
-        />
-      )}
       <div className="relative z-10">{children}</div>
     </div>
   );

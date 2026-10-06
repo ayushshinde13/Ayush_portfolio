@@ -10,7 +10,6 @@ import { GlassCard } from '@/components/ui/GlassCard';
 import {
   ArrowLeft,
   ArrowRight,
-  Cpu,
   Layers,
   Sparkles,
   CheckCircle2,
@@ -21,6 +20,7 @@ import {
   ShieldCheck,
   Flame,
 } from 'lucide-react';
+import { SkillIconBadge } from './SkillIconBadge';
 
 export function SkillsExplorer() {
   const [activeCategory, setActiveCategory] = useState<SkillCategory | 'All'>('All');
@@ -59,7 +59,7 @@ export function SkillsExplorer() {
         </Badge>
         <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[var(--text-primary)]">
           Technical Stack &amp;{' '}
-          <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-600 dark:from-indigo-400 dark:via-purple-400 dark:to-cyan-400 bg-clip-text text-transparent">
+          <span className="text-indigo-400">
             Proficiencies.
           </span>
         </h1>
@@ -111,8 +111,8 @@ export function SkillsExplorer() {
                 onClick={() => setActiveCategory(cat.id)}
                 className={`px-4 py-2 text-xs sm:text-sm font-semibold rounded-full border transition-all cursor-pointer select-none ${
                   isActive
-                    ? 'bg-indigo-600 text-white border-indigo-400/50 shadow-md shadow-indigo-500/20'
-                    : 'bg-white dark:bg-[var(--bg-card)] text-slate-700 dark:text-[var(--text-secondary)] border-slate-200 dark:border-[var(--border-subtle)] hover:border-indigo-500/30 hover:text-[var(--text-primary)] shadow-xs'
+                    ? 'bg-white text-slate-950 border-white font-semibold shadow-xs'
+                    : 'bg-white/5 text-slate-300 border-white/10 hover:border-white/20 hover:text-white'
                 }`}
               >
                 {cat.label}
@@ -142,10 +142,8 @@ export function SkillsExplorer() {
           >
             <div>
               <div className="flex items-start justify-between gap-2 mb-3">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-9 h-9 rounded-xl bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-200 dark:border-indigo-500/20 flex items-center justify-center text-indigo-600 dark:text-indigo-400 group-hover:scale-110 transition-transform">
-                    <Cpu className="w-4 h-4" />
-                  </div>
+                <div className="flex items-center gap-3">
+                  <SkillIconBadge name={skill.name} size="md" />
                   <div>
                     <h3 className="font-bold text-base text-[var(--text-primary)]">
                       {skill.name}
@@ -168,7 +166,7 @@ export function SkillsExplorer() {
       </div>
 
       {/* Cross-Link Bridge to Projects */}
-      <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-br from-indigo-500/10 via-purple-500/5 to-cyan-500/10 border border-indigo-500/20 text-center max-w-3xl mx-auto shadow-xl backdrop-blur-xl">
+      <div className="p-8 sm:p-12 rounded-3xl bg-[#0e121e] border border-indigo-500/20 text-center max-w-3xl mx-auto shadow-xl">
         <h2 className="text-2xl sm:text-3xl font-extrabold text-[var(--text-primary)] mb-3">
           See These Skills in Production
         </h2>
@@ -176,7 +174,7 @@ export function SkillsExplorer() {
           From live WebSocket chat systems at Hindustaan Innovations Private Limited to MERN stack e-commerce with payment processing, explore the live deployed products.
         </p>
         <Link href="/projects">
-          <Button size="lg" variant="glow" rightIcon={<ArrowRight className="w-4 h-4" />}>
+          <Button size="lg" variant="primary" rightIcon={<ArrowRight className="w-4 h-4" />}>
             Explore All Projects
           </Button>
         </Link>

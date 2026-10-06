@@ -41,7 +41,7 @@ export default function ResumePage() {
           <a
             href="/resume.pdf"
             download="Ayush_Kumar_Shinde_Resume.pdf"
-            className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white text-xs font-semibold shadow-md shadow-indigo-500/25 transition-all cursor-pointer"
+            className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-xl bg-white hover:bg-slate-200 border border-white text-slate-950 text-xs font-semibold transition-all cursor-pointer"
           >
             <FileDown className="w-3.5 h-3.5" />
             <span>Download PDF</span>
